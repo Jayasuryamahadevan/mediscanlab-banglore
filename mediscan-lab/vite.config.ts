@@ -2,8 +2,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
     plugins: [react()],
+    base: command === 'serve' ? '/' : '/wp-content/themes/mediscan-react-theme/dist/',
     server: {
         host: true,
         allowedHosts: true
@@ -21,4 +22,4 @@ export default defineConfig({
             }
         }
     }
-});
+}));

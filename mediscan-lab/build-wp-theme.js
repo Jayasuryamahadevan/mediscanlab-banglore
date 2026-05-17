@@ -69,12 +69,13 @@ function mediscan_react_enqueue_assets() {
     if ( is_dir( $dist_dir ) ) {
         $files = scandir( $dist_dir );
         foreach ( $files as $file ) {
-            // Only enqueue top-level generated chunks
-            if ( preg_match( '/^index-.*\.css$/', $file ) || preg_match( '/^vendor-.*\.css$/', $file ) ) {
-                wp_enqueue_style( 'mediscan-react-style-' . $file, $dist_url . '/' . $file, array(), null );
+            // Enqueue all compiled CSS styles dynamically
+            if ( preg_match( '/\\.css$/i', $file ) ) {
+                wp_enqueue_style( 'mediscan-react-style-' . sanitize_title($file), $dist_url . '/' . $file, array(), null );
             }
-            if ( preg_match( '/^index-.*\.js$/', $file ) || preg_match( '/^vendor-.*\.js$/', $file ) ) {
-                wp_enqueue_script( 'mediscan-react-script-' . $file, $dist_url . '/' . $file, array(), null, true );
+            // Enqueue all compiled JS script modules dynamically
+            if ( preg_match( '/\\.js$/i', $file ) ) {
+                wp_enqueue_script( 'mediscan-react-script-' . sanitize_title($file), $dist_url . '/' . $file, array(), null, true );
             }
         }
     }
