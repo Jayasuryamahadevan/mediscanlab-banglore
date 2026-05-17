@@ -109,7 +109,7 @@ const Services = () => {
                             tag: 'Automated',
                             desc: 'NABL accredited automated pathology for 500+ specialized blood and clinical tests.',
                             img: MEDICAL_IMAGES.PATHOLOGY,
-                            path: '/tests',
+                            path: '/clinical-laboratory-services',
                             theme: 'pink'
                         },
                         {
@@ -117,7 +117,7 @@ const Services = () => {
                             tag: 'Specialized',
                             desc: 'Comprehensive heart diagnostics including 2D Echo, TMT, and Digital ECG analysis.',
                             img: MEDICAL_IMAGES.CARDIOLOGY,
-                            path: '/services',
+                            path: '/cardiology-services',
                             theme: 'black'
                         }
                     ].map((service) => (
@@ -129,9 +129,9 @@ const Services = () => {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent" />
                             <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
-                                <span className="text-[10px] font-black uppercase tracking-[0.35em] text-white/80 mb-3 block drop-shadow-md">{service.tag}</span>
+                                <span className="text-[10px] font-black uppercase tracking-[0.35em] text-slate-200 mb-3 block drop-shadow-md">{service.tag}</span>
                                 <h3 className="text-3xl md:text-4xl font-black text-white tracking-tighter drop-shadow-lg">{service.title}</h3>
-                                <p className="mt-4 text-sm text-white/95 font-medium leading-relaxed line-clamp-2 drop-shadow-sm">{service.desc}</p>
+                                <p className="mt-4 text-sm text-white font-medium leading-relaxed line-clamp-2 drop-shadow-sm">{service.desc}</p>
                                 <Link 
                                     to={service.path} 
                                     className={`mt-10 inline-flex items-center justify-center w-full rounded-[20px] py-4.5 text-[10px] font-black uppercase tracking-[0.25em] transition-all duration-400 ${

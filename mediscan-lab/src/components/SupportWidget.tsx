@@ -23,7 +23,7 @@ const SupportWidget: React.FC = () => {
                         animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
                         exit={{ opacity: 0, scale: 0.95, y: 20, filter: 'blur(10px)' }}
                         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-                        className="mb-6 w-80 overflow-hidden rounded-[32px] border border-white/40 bg-white/80 shadow-[0_30px_70px_rgba(0,0,0,0.15)] backdrop-blur-3xl"
+                        className="mb-6 w-80 overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_30px_70px_rgba(0,0,0,0.15)]"
                     >
                         <div className="bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white">
                             <div className="flex items-center gap-3 opacity-60">

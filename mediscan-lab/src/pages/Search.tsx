@@ -61,7 +61,7 @@ const Search = () => {
                                     value={query}
                                     onChange={(event) => setQuery(event.target.value)}
                                     placeholder="Search blood tests, health checkups..."
-                                    className="h-14 w-full bg-transparent text-2xl font-black text-black outline-none placeholder:text-slate-200 tracking-tight"
+                                    className="h-14 w-full bg-transparent text-2xl font-black text-black outline-none placeholder:text-slate-400 tracking-tight"
                                 />
                                 <button type="submit" className="btn-brand-black rounded-[32px] px-12 py-5 text-[11px] font-black uppercase tracking-[0.2em] h-full shadow-2xl hover:scale-105 transition-transform">
                                     Search
@@ -120,7 +120,7 @@ const Search = () => {
                                                          item.type === 'service' ? 'Medical Service' : 
                                                          item.type === 'product' ? 'Diagnostic Unit' : 'Information'}
                                                     </span>
-                                                    <span className="text-[10px] font-black text-gray-300 uppercase tracking-widest">Medical Accuracy Verified</span>
+                                                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Medical Accuracy Verified</span>
                                                 </div>
                                                 <h2 className="text-xl md:text-2xl font-black text-black group-hover:text-[var(--color-brand-pink-deep)] transition-colors tracking-tight">
                                                     {item.title}

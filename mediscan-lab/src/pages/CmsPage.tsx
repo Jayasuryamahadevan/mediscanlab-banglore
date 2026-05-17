@@ -69,7 +69,7 @@ const CmsPage = () => {
                             Portal
                         </Link>
                         <span className="text-white/20">•</span>
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-black bg-[var(--color-brand-pink)] px-4 py-1.5 rounded-full">
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#7a4f7b] bg-[#f4eef5] px-4 py-1.5 rounded-full">
                             {contentTypeLabel}
                         </span>
                     </div>
@@ -82,7 +82,7 @@ const CmsPage = () => {
                         {content.title}
                     </motion.h1>
 
-                    <div className="mt-10 flex flex-wrap items-center gap-8 text-white/50 text-xs font-black uppercase tracking-widest">
+                    <div className="mt-10 flex flex-wrap items-center gap-8 text-slate-200 text-xs font-black uppercase tracking-widest">
                         <div className="flex items-center gap-2">
                             <Calendar size={16} />
                             <span>Clinical Update: Today</span>

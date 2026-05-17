@@ -145,12 +145,12 @@ const Navbar = () => {
                                         </NavLink>
                                         {/* Dropdown Menu */}
                                         <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
-                                            <div className="rounded-[24px] border border-slate-200/60 bg-white/95 px-2 py-3 shadow-2xl backdrop-blur-xl flex flex-col gap-1">
+                                            <div className="rounded-[24px] border border-slate-200/80 bg-white px-2 py-3 shadow-2xl flex flex-col gap-1 z-50">
                                                 {servicesDropdownItems.map((subItem) => (
                                                     <Link 
                                                         key={subItem.path} 
                                                         to={subItem.path} 
-                                                        className="px-4 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.15em] text-slate-500 hover:text-[var(--color-brand-pink)] hover:bg-[var(--color-brand-pink-soft)]/20 transition-all text-left"
+                                                        className="px-4 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.15em] text-slate-600 hover:text-[#986699] hover:bg-slate-50 transition-all text-left"
                                                     >
                                                         {subItem.label}
                                                     </Link>
@@ -158,7 +158,7 @@ const Navbar = () => {
                                                 <div className="border-t border-slate-100 my-1 pt-1">
                                                     <Link 
                                                         to="/services" 
-                                                        className="px-4 py-3 rounded-2xl text-[9px] font-black uppercase tracking-[0.2em] text-[var(--color-brand-pink)] hover:bg-[var(--color-brand-pink-soft)]/30 transition-all text-left flex items-center justify-between"
+                                                        className="px-4 py-3 rounded-2xl text-[9px] font-black uppercase tracking-[0.2em] text-[#986699] hover:text-[#7a4f7b] hover:bg-slate-50 transition-all text-left flex items-center justify-between"
                                                     >
                                                         <span>All Specialties</span>
                                                         <ArrowRight size={12} />
@@ -221,7 +221,7 @@ const Navbar = () => {
                                                                 key={subItem.path}
                                                                 to={subItem.path}
                                                                 onClick={() => setIsOpen(false)}
-                                                                className={({ isActive }) => `flex items-center justify-between px-4 h-12 rounded-xl transition-all ${isActive ? 'bg-[var(--color-brand-pink-soft)]/30 text-[var(--color-brand-pink)] font-black' : 'text-slate-500 font-bold'
+                                                                className={({ isActive }) => `flex items-center justify-between px-4 h-12 rounded-xl transition-all ${isActive ? 'bg-[#f4eef5] text-[#986699] font-black' : 'text-slate-600 font-bold'
                                                                     }`}
                                                             >
                                                                 <span className="text-xs uppercase tracking-wider">{subItem.label}</span>
@@ -230,7 +230,7 @@ const Navbar = () => {
                                                         <NavLink
                                                             to="/services"
                                                             onClick={() => setIsOpen(false)}
-                                                            className="flex items-center justify-between px-4 h-12 rounded-xl text-[var(--color-brand-pink)] font-black"
+                                                            className="flex items-center justify-between px-4 h-12 rounded-xl text-[#986699] hover:text-[#7a4f7b] font-black"
                                                         >
                                                             <span className="text-xs uppercase tracking-wider">All Specialties</span>
                                                             <ArrowRight size={14} />
