@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { siteData } from '../lib/siteData';
 
 const Footer = () => {
     const primaryPhone = siteData.contact.phones[0] ?? '+91 98765 43210';
     const primaryEmail = siteData.contact.emails[0] ?? 'support@mediscanlab.com';
+
+    const socials = [
+        { icon: Facebook, href: 'https://facebook.com/mediscandiagnostic', color: 'hover:text-[#1877F2]' },
+        { icon: Twitter, href: 'https://twitter.com/mediscan_lab', color: 'hover:text-[#1DA1F2]' },
+        { icon: Instagram, href: 'https://instagram.com/mediscandiagnostic', color: 'hover:text-[#E4405F]' },
+        { icon: Linkedin, href: 'https://linkedin.com/company/mediscandiagnostic', color: 'hover:text-[#0A66C2]' },
+        { icon: Youtube, href: 'https://youtube.com/@mediscanlab', color: 'hover:text-[#FF0000]' }
+    ];
 
     return (
         <footer className="px-4 pb-16">
@@ -29,6 +37,22 @@ const Footer = () => {
                                         {badge}
                                     </span>
                                 ))}
+                            </div>
+                            <div className="mt-8 flex items-center gap-4 justify-center md:justify-start">
+                                {socials.map((social, idx) => {
+                                    const IconComponent = social.icon;
+                                    return (
+                                        <a 
+                                            key={idx} 
+                                            href={social.href} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            className={`w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 transition-all duration-300 hover:scale-110 hover:bg-white hover:shadow-md ${social.color}`}
+                                        >
+                                            <IconComponent size={18} />
+                                        </a>
+                                    );
+                                })}
                             </div>
                         </div>
 

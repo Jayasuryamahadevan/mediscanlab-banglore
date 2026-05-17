@@ -1,6 +1,6 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { MapPin, Menu, Search, X, FlaskConical, Headphones, ArrowRight } from 'lucide-react';
+import { MapPin, Menu, Search, X, FlaskConical, Headphones, ArrowRight, ChevronDown } from 'lucide-react';
 import { siteData } from '../lib/siteData';
 
 const cityName = siteData.contact.location.split(',')[0]?.trim() || 'Kalaburagi';
@@ -10,12 +10,18 @@ const resolvePath = (title: string, fallback: string) => quickLinkMap.get(title.
 
 const primaryNav = [
     { label: 'About', path: resolvePath('About Us', '/about-us') },
-    { label: 'Diagnostics', path: '/services' },
+    { label: 'Services', path: '/services' },
     { label: 'Lab Tests', path: '/tests' },
     { label: 'Health Packages', path: '/packages' },
     { label: 'Blog', path: '/blog' },
     { label: 'Contact', path: '/contact' }
 ].filter((item, index, arr) => arr.findIndex((candidate) => candidate.path === item.path) === index);
+
+const servicesDropdownItems = [
+    { label: 'Radiology Services', path: '/radiology-services' },
+    { label: 'Cardiology Services', path: '/cardiology-services' },
+    { label: 'Clinical Laboratory Services', path: '/clinical-laboratory-services' }
+];
 
 const navbarLinkClass = ({ isActive }: { isActive: boolean }) =>
     `relative px-5 py-2.5 text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-400 ${isActive
@@ -25,6 +31,7 @@ const navbarLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
@@ -121,18 +128,61 @@ const Navbar = () => {
 
                     {/* Secondary Desktop Nav */}
                     <nav className="hidden lg:flex items-center justify-center gap-2 mt-4 pt-4 border-t border-slate-100">
-                        {primaryNav.map((item) => (
-                            <NavLink key={item.path} to={item.path} className={navbarLinkClass}>
-                                {({ isActive }) => (
-                                    <>
-                                        {item.label}
-                                        {isActive && (
-                                            <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[var(--color-brand-pink)] rounded-full" />
-                                        )}
-                                    </>
-                                )}
-                            </NavLink>
-                        ))}
+                        {primaryNav.map((item) => {
+                            if (item.label === 'Services') {
+                                return (
+                                    <div key={item.path} className="relative group">
+                                        <NavLink to={item.path} className={(props) => `${navbarLinkClass(props)} flex items-center gap-1`}>
+                                            {({ isActive }) => (
+                                                <>
+                                                    Services
+                                                    <ChevronDown size={12} className="text-slate-400 group-hover:rotate-180 transition-transform duration-300" />
+                                                    {isActive && (
+                                                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[var(--color-brand-pink)] rounded-full" />
+                                                    )}
+                                                </>
+                                            )}
+                                        </NavLink>
+                                        {/* Dropdown Menu */}
+                                        <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                                            <div className="rounded-[24px] border border-slate-200/60 bg-white/95 px-2 py-3 shadow-2xl backdrop-blur-xl flex flex-col gap-1">
+                                                {servicesDropdownItems.map((subItem) => (
+                                                    <Link 
+                                                        key={subItem.path} 
+                                                        to={subItem.path} 
+                                                        className="px-4 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.15em] text-slate-500 hover:text-[var(--color-brand-pink)] hover:bg-[var(--color-brand-pink-soft)]/20 transition-all text-left"
+                                                    >
+                                                        {subItem.label}
+                                                    </Link>
+                                                ))}
+                                                <div className="border-t border-slate-100 my-1 pt-1">
+                                                    <Link 
+                                                        to="/services" 
+                                                        className="px-4 py-3 rounded-2xl text-[9px] font-black uppercase tracking-[0.2em] text-[var(--color-brand-pink)] hover:bg-[var(--color-brand-pink-soft)]/30 transition-all text-left flex items-center justify-between"
+                                                    >
+                                                        <span>All Specialties</span>
+                                                        <ArrowRight size={12} />
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            }
+
+                            return (
+                                <NavLink key={item.path} to={item.path} className={navbarLinkClass}>
+                                    {({ isActive }) => (
+                                        <>
+                                            {item.label}
+                                            {isActive && (
+                                                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[var(--color-brand-pink)] rounded-full" />
+                                            )}
+                                        </>
+                                    )}
+                                </NavLink>
+                            );
+                        })}
                     </nav>
 
                     {/* Mobile Menu */}
@@ -152,18 +202,58 @@ const Navbar = () => {
                             </form>
 
                             <div className="flex flex-col gap-3 mb-8">
-                                {primaryNav.map((item) => (
-                                    <NavLink
-                                        key={item.path}
-                                        to={item.path}
-                                        onClick={() => setIsOpen(false)}
-                                        className={({ isActive }) => `flex items-center justify-between px-6 h-16 rounded-[20px] border border-slate-100 transition-all ${isActive ? 'bg-slate-900 text-white shadow-xl' : 'bg-white text-slate-600'
-                                            }`}
-                                    >
-                                        <span className="text-sm font-black uppercase tracking-widest">{item.label}</span>
-                                        <ArrowRight size={18} className="text-slate-300" />
-                                    </NavLink>
-                                ))}
+                                {primaryNav.map((item) => {
+                                    if (item.label === 'Services') {
+                                        return (
+                                            <div key={item.path} className="flex flex-col gap-2 rounded-[20px] border border-slate-100 p-2 bg-white shadow-sm">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                                                    className="flex items-center justify-between px-4 h-14 w-full text-slate-600 transition-all"
+                                                >
+                                                    <span className="text-sm font-black uppercase tracking-widest text-slate-600">Services</span>
+                                                    <ChevronDown size={18} className={`text-slate-400 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                                                </button>
+                                                {isMobileServicesOpen && (
+                                                    <div className="flex flex-col gap-2 px-2 pb-2 pl-4 border-t border-slate-50 pt-2">
+                                                        {servicesDropdownItems.map((subItem) => (
+                                                            <NavLink
+                                                                key={subItem.path}
+                                                                to={subItem.path}
+                                                                onClick={() => setIsOpen(false)}
+                                                                className={({ isActive }) => `flex items-center justify-between px-4 h-12 rounded-xl transition-all ${isActive ? 'bg-[var(--color-brand-pink-soft)]/30 text-[var(--color-brand-pink)] font-black' : 'text-slate-500 font-bold'
+                                                                    }`}
+                                                            >
+                                                                <span className="text-xs uppercase tracking-wider">{subItem.label}</span>
+                                                            </NavLink>
+                                                        ))}
+                                                        <NavLink
+                                                            to="/services"
+                                                            onClick={() => setIsOpen(false)}
+                                                            className="flex items-center justify-between px-4 h-12 rounded-xl text-[var(--color-brand-pink)] font-black"
+                                                        >
+                                                            <span className="text-xs uppercase tracking-wider">All Specialties</span>
+                                                            <ArrowRight size={14} />
+                                                        </NavLink>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    }
+
+                                    return (
+                                        <NavLink
+                                            key={item.path}
+                                            to={item.path}
+                                            onClick={() => setIsOpen(false)}
+                                            className={({ isActive }) => `flex items-center justify-between px-6 h-16 rounded-[20px] border border-slate-100 transition-all ${isActive ? 'bg-slate-900 text-white shadow-xl' : 'bg-white text-slate-600'
+                                                }`}
+                                        >
+                                            <span className="text-sm font-black uppercase tracking-widest">{item.label}</span>
+                                            <ArrowRight size={18} className="text-slate-300" />
+                                        </NavLink>
+                                    );
+                                })}
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
