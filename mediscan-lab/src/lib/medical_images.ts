@@ -4,47 +4,47 @@
  */
 
 export const MEDICAL_IMAGES = {
-    // Hero & Banners
-    HERO_MAIN: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/LabMachines.jpg', // Lab
-    DIAGNOSTICS_HEADER: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Ukrainian_microscope_%28cropped%29.jpg', // Tech
-    PACKAGES_HEADER: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Cardiac_surgery_operating_room.jpg', // Doctor
-    BLOG_HEADER: 'https://upload.wikimedia.org/wikipedia/commons/c/c8/At_Manchester_2023_2023_006.jpg', // Tech
-    ABOUT_HEADER: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Hospital-de-Bellvitge.jpg', // Facility
-    CONTACT_HEADER: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Sonographer_doing_pediatric_echocardiography.JPG', // Screen
+    // Hero & Banners - Bright, professional, human-focused
+    HERO_MAIN: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1600', // Doctors walking together
+    DIAGNOSTICS_HEADER: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1600', // Smiling female doctor
+    PACKAGES_HEADER: 'https://images.unsplash.com/photo-1584515901367-f134706ef522?auto=format&fit=crop&q=80&w=1600', // Elderly checkup
+    BLOG_HEADER: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1600', // Modern hospital reception
+    ABOUT_HEADER: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=1600', // Nurse talking to patient
+    CONTACT_HEADER: 'https://images.unsplash.com/photo-1638202993928-7267aad84c31?auto=format&fit=crop&q=80&w=1600', // Comforting patient
     
-    // Departments & Services
-    PATHOLOGY: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Hematology_.jpg',
-    RADIOLOGY: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Xraymachine.JPG',
-    CARDIOLOGY: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Cardiac_surgery_operating_room.jpg',
-    MRI_SCAN: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Xraymachine.JPG',
-    XRAY: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Xraymachine.JPG',
-    ULTRASOUND: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Sonographer_doing_pediatric_echocardiography.JPG',
-    LAB_TEAM: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/LabMachines.jpg',
+    // Departments & Services - Human-focused diagnostics
+    PATHOLOGY: 'https://images.unsplash.com/photo-1579156492013-662f940733a2?auto=format&fit=crop&q=80&w=1000', // Smiling lab scientist
+    RADIOLOGY: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000', // Medical team discussing a file
+    CARDIOLOGY: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1000', // Heart checkup with stethoscope
+    MRI_SCAN: 'https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=1000', // Caring nurse adjusting patient bed
+    XRAY: 'https://images.unsplash.com/photo-1576765608622-06b9b12a68be?auto=format&fit=crop&q=80&w=1000', // Close up of doctor holding hand of elderly patient
+    ULTRASOUND: 'https://images.unsplash.com/photo-1584825281247-514e8c8959d9?auto=format&fit=crop&q=80&w=1000', // Expecting parents and doctor
+    LAB_TEAM: 'https://images.unsplash.com/photo-1613919189030-fc3478953f62?auto=format&fit=crop&q=80&w=1000', // Lab group checking folder
     
     // General Medical
-    CHECKUP_1: 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Blood_pressure_monitoring.jpg',
-    CHECKUP_2: 'https://upload.wikimedia.org/wikipedia/commons/1/17/US_Navy_090814-N-6326B-001_A_mock_set-up_of_the_new_pod_design_in_the_Neonatal_Intensive_Care_Unit_%28NICU%29_at_Naval_Medical_Center_San_Diego_%28NMCSD%29_is_on_display_during_an_open_house.jpg',
-    DOCTOR_CONSULT: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Cardiac_surgery_operating_room.jpg',
-    MEDICAL_EQUIPMENT: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Ukrainian_microscope_%28cropped%29.jpg',
-    FACILITY: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Hospital-de-Bellvitge.jpg',
+    CHECKUP_1: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=800', // Stethoscope on desk
+    CHECKUP_2: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800', // Warm doctor smiling
+    DOCTOR_CONSULT: 'https://images.unsplash.com/photo-1504813184591-01552ff7c3d6?auto=format&fit=crop&q=80&w=800', // Doctor explaining prescription
+    MEDICAL_EQUIPMENT: 'https://images.unsplash.com/photo-1579684385109-c12e87900b46?auto=format&fit=crop&q=80&w=800', // Eye checkup
+    FACILITY: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800', // Modern clinic interior
 };
 
 export const SERVICE_IMAGE_SET = [
-    MEDICAL_IMAGES.PATHOLOGY,
-    MEDICAL_IMAGES.RADIOLOGY,
-    MEDICAL_IMAGES.CARDIOLOGY,
-    MEDICAL_IMAGES.MRI_SCAN,
-    MEDICAL_IMAGES.XRAY,
-    MEDICAL_IMAGES.ULTRASOUND,
-    MEDICAL_IMAGES.LAB_TEAM,
-    MEDICAL_IMAGES.CHECKUP_1,
+    'https://images.unsplash.com/photo-1615461066841-6116ecdccd3f?auto=format&fit=crop&q=80&w=800', // Technician labeling tubes
+    'https://images.unsplash.com/photo-1504813184591-01552ff7c3d6?auto=format&fit=crop&q=80&w=800', // Consulting patient
+    'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800', // Heart stethoscope check
+    'https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?auto=format&fit=crop&q=80&w=800', // BP cuff wrapping
+    'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800', // Warm doctor smiling
+    'https://images.unsplash.com/photo-1581594541451-330a9c19be7c?auto=format&fit=crop&q=80&w=800', // Pediatrician checking baby
+    'https://images.unsplash.com/photo-1579156492013-662f940733a2?auto=format&fit=crop&q=80&w=800', // Lab tech smiling
+    'https://images.unsplash.com/photo-1584515901367-f134706ef522?auto=format&fit=crop&q=80&w=800', // Elderly care checkup
 ];
 
 export const BLOG_IMAGE_SET = [
-    'https://upload.wikimedia.org/wikipedia/commons/9/9e/LabMachines.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/a/a5/Hematology_.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/1/17/US_Navy_090814-N-6326B-001_A_mock_set-up_of_the_new_pod_design_in_the_Neonatal_Intensive_Care_Unit_%28NICU%29_at_Naval_Medical_Center_San_Diego_%28NMCSD%29_is_on_display_during_an_open_house.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/a/a7/Sonographer_doing_pediatric_echocardiography.JPG',
-    'https://upload.wikimedia.org/wikipedia/commons/0/0a/Xraymachine.JPG',
-    'https://upload.wikimedia.org/wikipedia/commons/2/2e/Cardiac_surgery_operating_room.jpg',
+    'https://images.unsplash.com/photo-1607619056574-7b8f304f3c6f?auto=format&fit=crop&q=80&w=800', // Pharmacist advice
+    'https://images.unsplash.com/photo-1579684385109-c12e87900b46?auto=format&fit=crop&q=80&w=800', // Optometry care
+    'https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?auto=format&fit=crop&q=80&w=800', // BP check
+    'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=800', // Stethoscope
+    'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=800', // Nurse consulting patient
+    'https://images.unsplash.com/photo-1638202993928-7267aad84c31?auto=format&fit=crop&q=80&w=800', // Hand hold support
 ];
