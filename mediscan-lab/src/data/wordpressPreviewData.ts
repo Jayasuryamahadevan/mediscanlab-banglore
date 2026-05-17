@@ -130,7 +130,7 @@ export type WordPressPreviewData = {
 
 export const wordpressPreviewData: WordPressPreviewData = {
   "generatedFrom": "mediscanlab.WordPress.2026-02-26.xml",
-  "generatedAt": "2026-05-09T05:47:24.489Z",
+  "generatedAt": "2026-05-17T05:58:50.850Z",
   "site": {
     "title": "MediScan Lab",
     "description": "Medsite",
@@ -306,8 +306,8 @@ export const wordpressPreviewData: WordPressPreviewData = {
       "slug": "contact-us",
       "path": "/contact-us",
       "link": "https://mediscanlab.com/contact-us",
-      "excerpt": "Get In Touch Phone Number (08472) - 256615 08472-256693 08472-246693 Our Location​​ Mediscan Diagnostic & Health Care Pvt. Ltd , Metro-mart Complex, Opp: Mahanagar, Near Bus Stand, Kalaburagi, Karnataka - 585102 Email Address info@mediscanlab.com info@mediscandiagnostic.com Contact Us Feel Free to Contact us any time. We will get back to you as soon as we can!",
-      "content": "Get In Touch\nPhone Number\n(08472) - 256615\n08472-256693\n08472-246693\nOur Location​​\nMediscan Diagnostic & Health Care Pvt. Ltd , Metro-mart Complex, Opp: Mahanagar, Near Bus Stand, Kalaburagi, Karnataka - 585102\nEmail Address\ninfo@mediscanlab.com\ninfo@mediscandiagnostic.com\nContact Us\nFeel Free to Contact us any time. We will get back to you as soon as we can!",
+      "excerpt": "Get In Touch Phone Number +1 888-654-4329 +1 888-543-8765 Our Location​​ 456, Lorem Street New York, 33454, NY. Email Address contact@example.com admin@example.com Contact Us Feel Free to Contact us any time. We will get back to you as soon as we can!",
+      "content": "Get In Touch\nPhone Number\n+1 888-654-4329\n+1 888-543-8765\nOur Location​​\n456, Lorem Street\nNew York, 33454, NY.\nEmail Address\ncontact@example.com\nadmin@example.com\nContact Us\nFeel Free to Contact us any time. We will get back to you as soon as we can!",
       "kind": "support"
     },
     {
@@ -2552,6 +2552,69 @@ export const wordpressPreviewData: WordPressPreviewData = {
       "link": "https://mediscanlab.com/clinical-laboratory-services",
       "excerpt": "Clinical Laboratory Services Test Clinical Laboratory Services Mediscan offers a one-stop solution for all clinical and pre-clinical laboratory services, providing the most accurate diagnostic results. We have been touted as a centralised hub of diagnostic tes..."
     },
+    {
+      "title": "Heart Failure Management",
+      "slug": "heart-failure-management",
+      "path": "/blog/portfolio/heart-failure-management",
+      "link": "https://mediscanlab.com/blog/portfolio/heart-failure-management",
+      "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor text ever since..."
+    },
+    {
+      "title": "Blood Pressure Monitoring",
+      "slug": "blood-pressure-monitoring",
+      "path": "/blog/portfolio/blood-pressure-monitoring",
+      "link": "https://mediscanlab.com/blog/portfolio/blood-pressure-monitoring",
+      "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor text ever since..."
+    },
+    {
+      "title": "24/7 Monitoring and Care",
+      "slug": "24-7-monitoring-and-care",
+      "path": "/blog/portfolio/24-7-monitoring-and-care",
+      "link": "https://mediscanlab.com/blog/portfolio/24-7-monitoring-and-care",
+      "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor text ever since..."
+    },
+    {
+      "title": "Optimization of Therapy",
+      "slug": "optimization-of-therapy",
+      "path": "/blog/portfolio/optimization-of-therapy",
+      "link": "https://mediscanlab.com/blog/portfolio/optimization-of-therapy",
+      "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor text ever since..."
+    },
+    {
+      "title": "Valve Implantation",
+      "slug": "valve-implantation",
+      "path": "/blog/portfolio/valve-implantation",
+      "link": "https://mediscanlab.com/blog/portfolio/valve-implantation",
+      "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor text ever since..."
+    },
+    {
+      "title": "Children's Heart Surgery",
+      "slug": "childrens-heart-surgery",
+      "path": "/blog/portfolio/childrens-heart-surgery",
+      "link": "https://mediscanlab.com/blog/portfolio/childrens-heart-surgery",
+      "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor text ever since..."
+    },
+    {
+      "title": "Latest Equipment surgery",
+      "slug": "latest-equipment-surgery",
+      "path": "/blog/portfolio/latest-equipment-surgery",
+      "link": "https://mediscanlab.com/blog/portfolio/latest-equipment-surgery",
+      "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor text ever since..."
+    },
+    {
+      "title": "Heart Transplant Carefully",
+      "slug": "heart-transplant-carefully",
+      "path": "/blog/portfolio/heart-transplant-carefully",
+      "link": "https://mediscanlab.com/blog/portfolio/heart-transplant-carefully",
+      "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor text ever since..."
+    },
+    {
+      "title": "Recognized Cardiologists",
+      "slug": "recognized-cardiologists",
+      "path": "/blog/portfolio/recognized-cardiologists",
+      "link": "https://mediscanlab.com/blog/portfolio/recognized-cardiologists",
+      "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor text ever since..."
+    }
   ],
   "blogPosts": [
     {
@@ -2683,17 +2746,16 @@ export const wordpressPreviewData: WordPressPreviewData = {
     "excerpt": "870 + Satisfied Patients What We Offer Provide Best Healthcare and Heart Specialist Quickly response provide our specialist doctrors to patients in online conference. We help all heart patients and also provide . Expert Nursing Expert Nursing facility give us..."
   },
   "contact": {
-    "title": "Contact Center",
+    "title": "Contact",
     "path": "/contact-us",
     "phones": [
-      "(08472) - 256615",
-      "08472-256693",
-      "08472-246693"
+      "+1 888-654-4329",
+      "+1 888-543-8765"
     ],
     "emails": [
-      "info@mediscanlab.com",
-      "info@mediscandiagnostic.com"
+      "contact@example.com",
+      "admin@example.com"
     ],
-    "location": "Mediscan Diagnostic & Health Care Pvt. Ltd , Metro-mart Complex, Opp: Mahanagar, Near Bus Stand, Kalaburagi, Karnataka - 585102"
+    "location": "Kalaburagi, Karnataka"
   }
 };
