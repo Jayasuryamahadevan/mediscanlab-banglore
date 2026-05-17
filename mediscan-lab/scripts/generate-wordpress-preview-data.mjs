@@ -642,4 +642,31 @@ export const wordpressPreviewData: WordPressPreviewData = ${JSON.stringify(outpu
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, outputSource, 'utf8');
+
+// Generate SEO metadata map for PHP rendering
+const seoMap = {
+  '/': { title: output.site.title, description: output.site.description }
+};
+const addSeo = (items, pathKey = 'path', descKey = 'excerpt') => {
+  for (const item of items) {
+    if (item[pathKey]) {
+      seoMap[item[pathKey]] = { 
+        title: `${item.title} | ${output.site.title}`, 
+        description: item[descKey] || output.site.description 
+      };
+    }
+  }
+};
+addSeo(output.pages);
+addSeo(output.posts);
+addSeo(output.products);
+addSeo(output.customEntries);
+addSeo(output.labTests);
+addSeo(output.checkupPackages, 'sourcePath');
+
+const publicDir = path.resolve(projectRoot, 'public');
+fs.mkdirSync(publicDir, { recursive: true });
+fs.writeFileSync(path.resolve(publicDir, 'seo-routes.json'), JSON.stringify(seoMap, null, 2), 'utf8');
+
 console.log(`Generated ${path.relative(projectRoot, outputPath)} from ${path.relative(projectRoot, xmlPath)}`);
+console.log(`Generated public/seo-routes.json for WordPress PHP SEO injection`);
