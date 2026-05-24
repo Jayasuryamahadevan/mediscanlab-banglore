@@ -67,7 +67,6 @@ const Hero = () => {
                                 <div className="flex flex-1 flex-col sm:flex-row gap-4 md:gap-5">
                                     <a
                                         href={siteData.bookingUrl}
-                                        onClick={(e) => handleExternalRedirect(e, siteData.bookingUrl)}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="btn-brand-black group relative overflow-hidden flex items-center justify-center gap-5 rounded-[20px] px-10 py-6 md:px-12 md:py-7 text-[10px] font-black uppercase tracking-[0.25em] shadow-2xl transition-all hover:translate-y-[-2px] flex-1"
@@ -78,8 +77,7 @@ const Hero = () => {
                                     </a>
 
                                     <a
-                                        href={siteData.reportsUrl}
-                                        onClick={(e) => handleExternalRedirect(e, siteData.reportsUrl)}
+                                        href={'https://reports.mediscanlab.com/'}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="btn-brand-black group relative overflow-hidden flex items-center justify-center gap-5 rounded-[20px] px-10 py-6 md:px-12 md:py-7 text-[10px] font-black uppercase tracking-[0.25em] shadow-2xl transition-all hover:translate-y-[-2px] flex-1 bg-white text-slate-900 border border-slate-200 hover:bg-slate-50"

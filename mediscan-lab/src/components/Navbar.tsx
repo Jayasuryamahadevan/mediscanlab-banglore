@@ -1,7 +1,7 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { MapPin, Menu, Search, X, FlaskConical, Headphones, ArrowRight, ChevronDown } from 'lucide-react';
-import { siteData, handleExternalRedirect } from '../lib/siteData';
+import { siteData } from '../lib/siteData';
 
 const cityName = siteData.contact.location.split(',')[0]?.trim() || 'Kalaburagi';
 const topOffer = siteData.checkupPackages[0];
@@ -16,7 +16,7 @@ const primaryNav = [
     { label: 'Services', path: '/services' },
     { label: 'Lab Tests', path: '/tests' },
     { label: 'Health Packages', path: '/packages' },
-    { label: 'Download Report', path: siteData.reportsUrl, external: true },
+    { label: 'Download Report', path: 'https://reports.mediscanlab.com/', external: true },
     { label: 'Blog', path: '/blog' },
     { label: 'Privacy Policy', path: '/privacy-policy' },
     { label: 'Contact', path: '/contact' }

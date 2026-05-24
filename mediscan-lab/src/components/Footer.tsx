@@ -3,7 +3,6 @@ import { Mail, MapPin, Phone, Facebook, Instagram, Linkedin } from 'lucide-react
 import { siteData } from '../lib/siteData';
 
 const Footer = () => {
-    const primaryPhone = siteData.contact.phones[1] ?? '+91 9035534724';
     const primaryEmail = siteData.contact.emails[0] ?? 'info@mediscandiagnostic.com';
 
     const socials = [
@@ -21,7 +20,7 @@ const Footer = () => {
                         {/* Brand */}
                         <div className="text-center md:text-left">
                             <Link to="/" className="shrink-0 flex items-center h-12 w-auto mb-8 justify-center md:justify-start group">
-                                <img src={`${base}logo.png`} alt="Mediscan Labs" className="h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
+                                <img src="/logo.png" alt="Mediscan Labs" className="h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
                             </Link>
                             <p className="text-sm leading-relaxed text-slate-500 max-w-[300px] mx-auto md:mx-0 font-medium">
                                 {siteData.site.description}
@@ -128,8 +127,7 @@ const Footer = () => {
                                 </li>
                                 <li className="pt-2">
                                     <a
-                                        href={siteData.reportsUrl}
-                                        onClick={(e) => handleExternalRedirect(e, siteData.reportsUrl)}
+                                        href={'https://reports.mediscanlab.com/'}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-full inline-flex items-center justify-center gap-3 rounded-[20px] border border-slate-200 bg-white px-8 py-4 text-xs font-black uppercase tracking-[0.2em] text-slate-900 hover:bg-slate-50 hover:shadow-lg transition-all"
@@ -140,7 +138,6 @@ const Footer = () => {
                                 <li>
                                     <a
                                         href={siteData.bookingUrl}
-                                        onClick={(e) => handleExternalRedirect(e, siteData.bookingUrl)}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="btn-brand-pink w-full inline-flex items-center justify-center rounded-[20px] px-8 py-4 text-xs font-black uppercase tracking-[0.2em] shadow-xl"

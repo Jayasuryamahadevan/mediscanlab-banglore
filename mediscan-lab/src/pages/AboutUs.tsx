@@ -293,6 +293,31 @@ const AboutUs = () => {
                                 <h3 className="text-2xl font-black text-white tracking-tighter leading-none">{item.title}</h3>
                                 <p className="mt-4 text-sm text-white/80 font-medium leading-relaxed">{item.desc}</p>
                             </div>
+                        </motion.article>
+                    ))}
+                </div>
+
+                {/* Managing Director Message */}
+                <div id="md-message" className="scroll-mt-28">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="glass-panel-elite rounded-[48px] p-8 md:p-16 bg-white border border-slate-100 shadow-2xl relative overflow-hidden"
+                    >
+                        <div className="absolute right-0 top-0 text-[18rem] font-serif text-slate-50 -z-10 leading-none select-none translate-x-20 -translate-y-20">
+                            ”
+                        </div>
+                        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] items-start relative z-10">
+                            <div className="space-y-6">
+                                <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-[#986699]/10 text-[#986699]">
+                                    <Quote size={32} />
+                                </div>
+                                <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter leading-tight">
+                                    MD's <span className="text-slate-400">Message</span>
+                                </h2>
+                            </div>
                             <div className="space-y-6 text-slate-600 font-medium text-sm leading-relaxed text-left border-l border-slate-100 pl-0 lg:pl-10">
                                 <p>
                                     "I am glad to highlight the growth of Mediscan Labs for the past 20+ years which is exclusively based on the **PERFECT REPORTS GENERATION** and the struggle put in by the entire staff team over the years.
