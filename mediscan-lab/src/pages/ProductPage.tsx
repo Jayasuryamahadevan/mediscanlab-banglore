@@ -1,6 +1,6 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
-import { getProductByPath, getProductBySlug, toParagraphs } from '../lib/siteData';
+import { getProductByPath, getProductBySlug, toParagraphs, handleExternalRedirect } from '../lib/siteData';
 
 const ProductPage = () => {
     const { slug = '' } = useParams();
@@ -40,6 +40,7 @@ const ProductPage = () => {
                     </Link>
                     <a
                         href={product.link}
+                        onClick={(e) => handleExternalRedirect(e, product.link)}
                         target="_blank"
                         rel="noreferrer"
                         className="glass-panel-soft inline-flex items-center gap-2 rounded-2xl border border-white/60 bg-white/45 px-6 py-3 text-xs font-black uppercase tracking-widest text-black"

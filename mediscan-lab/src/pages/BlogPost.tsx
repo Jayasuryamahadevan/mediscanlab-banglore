@@ -1,6 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Calendar, User, Clock, Share2, ShieldCheck } from 'lucide-react';
-import { getPostBySlug, toParagraphs } from '../lib/siteData';
+import { getPostBySlug, toParagraphs, handleExternalRedirect } from '../lib/siteData';
 import { motion } from 'framer-motion';
 import { MEDICAL_IMAGES } from '../lib/medical_images';
 
@@ -89,6 +89,7 @@ const BlogPost = () => {
                                 </button>
                                 <a
                                     href={post.link}
+                                    onClick={(e) => handleExternalRedirect(e, post.link)}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="btn-brand-black rounded-2xl px-6 py-3.5 text-xs font-black uppercase tracking-widest flex items-center gap-2 shadow-xl"

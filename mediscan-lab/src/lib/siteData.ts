@@ -1,11 +1,58 @@
 import { wordpressPreviewData } from '../data/wordpressPreviewData';
 
 export const BOOKING_URL = 'https://reports.mediscanlab.com/hcbooking/';
+export const REPORTS_URL = 'https://reports.mediscanlab.com/';
+
+export const testimonials = (wordpressPreviewData.customEntries ?? [])
+    .filter((e) => e.postType === 'dsvy-testimonial')
+    .map((e) => ({
+        name: e.title,
+        content: e.content || e.excerpt,
+        source: 'Google Reviews'
+    }));
 
 export const siteData = {
     ...wordpressPreviewData,
-    bookingUrl: BOOKING_URL
+    bookingUrl: BOOKING_URL,
+    reportsUrl: REPORTS_URL,
+    contact: {
+        ...wordpressPreviewData.contact,
+        phones: [
+            "(08472)-256693",
+            "246693",
+            "226693",
+            "266693",
+            "+91 90355 34721",
+            "+91 90355 34722"
+        ],
+        emails: [
+            "info@mediscandiagnostic.com"
+        ],
+        location: "Behind G K Complex, Opp: Mohan Lodge, MSK Mill Road, Gulbarga - 585 102 (Karnataka - India)",
+        branch: "1/15B/1, 2nd Cross, MB Nagar, Basaveshwar Colony Road, Kalaburagi - 585 105",
+        branchPhone: "+91 90355 34726",
+        hours: [
+            "All USG pregnancy scan time: 9 AM to 4 PM",
+            "USG & X-ray time: 9 AM – 9 PM",
+            "CT scan, MRI scan & Lab investigations: 24x7"
+        ]
+    },
+    socials: {
+        facebook: "https://www.facebook.com/MediScanLabOfficial",
+        instagram: "https://www.instagram.com/mediscan_labs/",
+        linkedin: "https://www.linkedin.com/company/mediscan-labs/",
+        whatsapp: "https://wa.me/919035534724"
+    }
 };
+
+export const handleExternalRedirect = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, url: string) => {
+    e.preventDefault();
+    const confirmed = window.confirm("You are leaving our website to access the secure external patient booking and reporting portal. Shall I redirect?");
+    if (confirmed) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }
+};
+
 
 type SearchItemType = 'page' | 'post' | 'package' | 'service' | 'test' | 'product' | 'custom';
 

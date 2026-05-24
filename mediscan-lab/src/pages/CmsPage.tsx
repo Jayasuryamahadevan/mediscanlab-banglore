@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Calendar, User, FlaskConical, Share2, Layers3 } from 'lucide-react';
-import { checkupPackages, getAnyContentByPath, siteData, toParagraphs } from '../lib/siteData';
+import { checkupPackages, getAnyContentByPath, siteData, toParagraphs, handleExternalRedirect } from '../lib/siteData';
 import { motion } from 'framer-motion';
 
 const CmsPage = () => {
@@ -138,6 +138,7 @@ const CmsPage = () => {
                             {canOpenOriginal && (
                                 <a
                                     href={content.link}
+                                    onClick={(e) => handleExternalRedirect(e, content.link)}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="glass-panel-soft inline-flex items-center gap-3 rounded-2xl border border-white/60 bg-white/45 px-8 py-4 text-xs font-black uppercase tracking-widest text-black shadow-lg"

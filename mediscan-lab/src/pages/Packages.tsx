@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FlaskConical, ArrowRight, Package, Star, ShieldCheck, Heart } from 'lucide-react';
-import { siteData, checkupPackages, sortedProducts } from '../lib/siteData';
+import { siteData, checkupPackages, sortedProducts, handleExternalRedirect } from '../lib/siteData';
 import { MEDICAL_IMAGES, SERVICE_IMAGE_SET } from '../lib/medical_images';
 
 const Packages = () => {
@@ -102,6 +102,7 @@ const Packages = () => {
 
                                 <a
                                     href={siteData.bookingUrl}
+                                    onClick={(e) => handleExternalRedirect(e, siteData.bookingUrl)}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btn-brand-black flex items-center justify-center gap-4 rounded-[24px] py-7 text-[11px] font-black uppercase tracking-[0.25em] shadow-2xl hover:scale-[1.02] active:scale-95 transition-all w-full"

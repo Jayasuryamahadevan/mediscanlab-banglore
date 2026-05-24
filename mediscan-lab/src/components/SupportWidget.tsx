@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, Calendar, X, ChevronRight } from 'lucide-react';
-import { siteData } from '../lib/siteData';
+import { siteData, handleExternalRedirect } from '../lib/siteData';
 import ChatBotIcon from './ChatBotIcon';
 
 const SupportWidget: React.FC = () => {
@@ -37,6 +37,7 @@ const SupportWidget: React.FC = () => {
                             {/* WhatsApp Option */}
                             <a
                                 href={whatsappUrl}
+                                onClick={(e) => handleExternalRedirect(e, whatsappUrl)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="group flex items-center justify-between rounded-2xl p-4 transition-all hover:bg-slate-50"
@@ -58,6 +59,7 @@ const SupportWidget: React.FC = () => {
                             {/* Booking Option */}
                             <a
                                 href={contactUrl}
+                                onClick={(e) => handleExternalRedirect(e, contactUrl)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="group flex items-center justify-between rounded-2xl p-4 transition-all hover:bg-slate-50"

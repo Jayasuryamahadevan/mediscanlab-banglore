@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, FlaskConical, Layers3, MessageCircle, ChevronRight } from 'lucide-react';
-import { siteData, checkupPackages, sortedPosts } from '../lib/siteData';
+import { siteData, checkupPackages, sortedPosts, handleExternalRedirect } from '../lib/siteData';
 import { MEDICAL_IMAGES, SERVICE_IMAGE_SET, BLOG_IMAGE_SET } from '../lib/medical_images';
 
 const formatDate = (value: string) => {
@@ -22,6 +22,7 @@ const formatDate = (value: string) => {
 };
 
 const Services = () => {
+    const base = (import.meta as any).env.BASE_URL || '/';
     const packageCards = checkupPackages.slice(0, 8);
     const postCards = sortedPosts.slice(0, 4);
 
@@ -81,6 +82,7 @@ const Services = () => {
                                      </div>
                                      <a
                                         href={siteData.bookingUrl}
+                                        onClick={(e) => handleExternalRedirect(e, siteData.bookingUrl)}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="btn-brand-black mt-auto inline-flex w-full items-center justify-center gap-3 rounded-2xl px-6 py-4 text-xs font-black uppercase tracking-[0.2em] hover:scale-[1.02] active:scale-95 transition-all"
@@ -189,7 +191,7 @@ const Services = () => {
                         <div className="relative mb-8 h-20 w-20">
                             <div className="absolute inset-0 animate-pulse rounded-full bg-green-500/5" />
                             <img 
-                                src="/robot.png" 
+                                src={`${base}robot.png`} 
                                 alt="Support Mascot" 
                                 className="relative z-10 w-full h-full object-contain drop-shadow-xl"
                             />
@@ -203,6 +205,7 @@ const Services = () => {
                         </p>
                         <a
                             href="https://wa.me/919035534724"
+                            onClick={(e) => handleExternalRedirect(e, "https://wa.me/919035534724")}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-4 rounded-3xl bg-slate-900 px-10 py-5 text-sm font-black uppercase tracking-widest text-white hover:bg-black transition-all shadow-2xl hover:scale-[1.02] active:scale-95 group"

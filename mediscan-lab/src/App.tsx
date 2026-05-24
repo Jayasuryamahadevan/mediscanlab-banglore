@@ -15,6 +15,7 @@ import ProductCatalog from './pages/ProductCatalog';
 import ProductPage from './pages/ProductPage';
 import AllContent from './pages/AllContent';
 import AboutUs from './pages/AboutUs';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import SmoothScroll from './components/SmoothScroll';
 import './styles/variables.css';
 
@@ -51,6 +52,8 @@ const AnimatedRoutes = () => {
                     <Route path="/blog/:slug" element={<BlogPost />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/contact-us" element={<Contact />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
                     <Route path="/search" element={<Search />} />
                     <Route path="/all-content" element={<AllContent />} />
                     <Route path="/home" element={<Navigate to="/" replace />} />

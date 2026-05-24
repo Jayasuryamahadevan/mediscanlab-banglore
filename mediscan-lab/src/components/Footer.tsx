@@ -1,17 +1,16 @@
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
-import { siteData } from '../lib/siteData';
+import { Mail, MapPin, Phone, Facebook, Instagram, Linkedin, MessageCircle } from 'lucide-react';
+import { siteData, handleExternalRedirect } from '../lib/siteData';
 
 const Footer = () => {
-    const primaryPhone = siteData.contact.phones[0] ?? '+91 98765 43210';
-    const primaryEmail = siteData.contact.emails[0] ?? 'support@mediscanlab.com';
+    const base = (import.meta as any).env.BASE_URL || '/';
+    const primaryEmail = siteData.contact.emails[0] ?? 'info@mediscandiagnostic.com';
 
     const socials = [
-        { icon: Facebook, href: 'https://facebook.com/mediscandiagnostic', color: 'hover:text-[#1877F2]' },
-        { icon: Twitter, href: 'https://twitter.com/mediscan_lab', color: 'hover:text-[#1DA1F2]' },
-        { icon: Instagram, href: 'https://instagram.com/mediscandiagnostic', color: 'hover:text-[#E4405F]' },
-        { icon: Linkedin, href: 'https://linkedin.com/company/mediscandiagnostic', color: 'hover:text-[#0A66C2]' },
-        { icon: Youtube, href: 'https://youtube.com/@mediscanlab', color: 'hover:text-[#FF0000]' }
+        { icon: Facebook, href: siteData.socials.facebook, color: 'hover:text-[#1877F2]' },
+        { icon: Instagram, href: siteData.socials.instagram, color: 'hover:text-[#E4405F]' },
+        { icon: Linkedin, href: siteData.socials.linkedin, color: 'hover:text-[#0A66C2]' },
+        { icon: MessageCircle, href: siteData.socials.whatsapp, color: 'hover:text-[#25D366]' }
     ];
 
     return (
@@ -23,7 +22,7 @@ const Footer = () => {
                         {/* Brand */}
                         <div className="text-center md:text-left">
                             <Link to="/" className="shrink-0 flex items-center h-12 w-auto mb-8 justify-center md:justify-start group">
-                                <img src="/logo.png" alt="Mediscan Labs" className="h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
+                                <img src={`${base}logo.png`} alt="Mediscan Labs" className="h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
                             </Link>
                             <p className="text-sm leading-relaxed text-slate-500 max-w-[300px] mx-auto md:mx-0 font-medium">
                                 {siteData.site.description}
@@ -97,13 +96,28 @@ const Footer = () => {
                                     </div>
                                     <span className="text-xs font-bold text-slate-500 leading-relaxed text-left">{siteData.contact.location}</span>
                                 </li>
-                                <li className="flex items-center gap-4 justify-center md:justify-start">
-                                    <div className="w-10 h-10 rounded-2xl bg-slate-900 flex items-center justify-center shrink-0">
+                                <li className="flex items-start gap-4 justify-center md:justify-start">
+                                    <div className="w-10 h-10 rounded-2xl bg-slate-900 flex items-center justify-center shrink-0 mt-1">
                                         <Phone size={18} className="text-white" />
                                     </div>
-                                    <a href={`tel:${primaryPhone}`} className="text-sm font-black text-[var(--color-brand-black)] hover:text-[var(--color-brand-pink)] transition-colors">
-                                        {primaryPhone}
-                                    </a>
+                                    <div className="flex flex-col text-left">
+                                        <span className="text-[8px] font-black uppercase tracking-wider text-slate-400">Landlines</span>
+                                        <div className="flex flex-wrap gap-x-2 gap-y-0.5 text-xs font-bold text-slate-600">
+                                            {siteData.contact.phones.slice(0, 4).map((p, idx) => (
+                                                <a key={idx} href={`tel:${p}`} className="hover:text-[var(--color-brand-pink)] transition-colors">
+                                                    {p}{idx < 3 ? ',' : ''}
+                                                </a>
+                                            ))}
+                                        </div>
+                                        <span className="text-[8px] font-black uppercase tracking-wider text-slate-400 mt-2">Mobiles</span>
+                                        <div className="flex flex-col gap-0.5 text-sm font-black text-[var(--color-brand-black)]">
+                                            {siteData.contact.phones.slice(4).map((p, idx) => (
+                                                <a key={idx} href={`tel:${p.replace(/\s+/g, '')}`} className="hover:text-[var(--color-brand-pink)] transition-colors">
+                                                    {p}
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </li>
                                 <li className="flex items-center gap-4 justify-center md:justify-start">
                                     <div className="w-10 h-10 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
@@ -113,9 +127,21 @@ const Footer = () => {
                                         {primaryEmail}
                                     </a>
                                 </li>
-                                <li className="pt-4">
+                                <li className="pt-2">
+                                    <a
+                                        href={siteData.reportsUrl}
+                                        onClick={(e) => handleExternalRedirect(e, siteData.reportsUrl)}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full inline-flex items-center justify-center gap-3 rounded-[20px] border border-slate-200 bg-white px-8 py-4 text-xs font-black uppercase tracking-[0.2em] text-slate-900 hover:bg-slate-50 hover:shadow-lg transition-all"
+                                    >
+                                        Download Report
+                                    </a>
+                                </li>
+                                <li>
                                     <a
                                         href={siteData.bookingUrl}
+                                        onClick={(e) => handleExternalRedirect(e, siteData.bookingUrl)}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="btn-brand-pink w-full inline-flex items-center justify-center rounded-[20px] px-8 py-4 text-xs font-black uppercase tracking-[0.2em] shadow-xl"
@@ -130,7 +156,7 @@ const Footer = () => {
                     <div className="mt-16 border-t border-slate-100 pt-10 flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
                         <span>© {new Date().getFullYear()} {siteData.site.title}</span>
                         <div className="flex items-center gap-8">
-                            <Link to="/about-us" className="hover:text-[var(--color-brand-black)] transition-colors">Privacy</Link>
+                            <Link to="/privacy-policy" className="hover:text-[var(--color-brand-black)] transition-colors">Privacy</Link>
                             <Link to="/contact" className="hover:text-[var(--color-brand-black)] transition-colors">Terms</Link>
                             <Link to="/blog" className="hover:text-[var(--color-brand-black)] transition-colors">Compliances</Link>
                         </div>

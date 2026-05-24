@@ -2,10 +2,10 @@ import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FlaskConical, Package, Search, Phone, ArrowRight, Activity } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { siteData } from '../lib/siteData';
+import { siteData, handleExternalRedirect } from '../lib/siteData';
 import { MEDICAL_IMAGES } from '../lib/medical_images';
 
-const supportPhone = siteData.contact.phones[0] ?? '+91 00000 00000';
+const supportPhone = siteData.contact.phones[4] ?? '+91 90355 34721';
 
 const Hero = () => {
     const navigate = useNavigate();
@@ -60,27 +60,44 @@ const Hero = () => {
                                 </p>
                             </div>
 
-                            <div className="flex flex-col sm:flex-row gap-4 md:gap-5 w-full lg:w-auto">
-                                <a
-                                    href={siteData.bookingUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="btn-brand-black group relative overflow-hidden flex items-center justify-center gap-5 rounded-[20px] px-10 py-6 md:px-12 md:py-7 text-[10px] font-black uppercase tracking-[0.25em] shadow-2xl transition-all hover:translate-y-[-2px]"
-                                >
-                                    <span className="relative z-10">Get Started</span>
-                                    <ArrowRight size={16} className="relative z-10 group-hover:translate-x-2 transition-transform" />
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                                </a>
+                            <div className="flex flex-col sm:flex-row gap-4 md:gap-5 w-full lg:w-full">
+                                <div className="flex flex-1 flex-col sm:flex-row gap-4 md:gap-5">
+                                    <a
+                                        href={siteData.bookingUrl}
+                                        onClick={(e) => handleExternalRedirect(e, siteData.bookingUrl)}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn-brand-black group relative overflow-hidden flex items-center justify-center gap-5 rounded-[20px] px-10 py-6 md:px-12 md:py-7 text-[10px] font-black uppercase tracking-[0.25em] shadow-2xl transition-all hover:translate-y-[-2px] flex-1"
+                                    >
+                                        <span className="relative z-10">Get Started</span>
+                                        <ArrowRight size={16} className="relative z-10 group-hover:translate-x-2 transition-transform" />
+                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                                    </a>
 
-                                <div className="glass-panel-elite flex items-center gap-5 rounded-[20px] px-8 py-6 md:py-7 border-white/60 bg-white/40 shadow-xl group hover:bg-white transition-all">
+                                    <a
+                                        href={siteData.reportsUrl}
+                                        onClick={(e) => handleExternalRedirect(e, siteData.reportsUrl)}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn-brand-black group relative overflow-hidden flex items-center justify-center gap-5 rounded-[20px] px-10 py-6 md:px-12 md:py-7 text-[10px] font-black uppercase tracking-[0.25em] shadow-2xl transition-all hover:translate-y-[-2px] flex-1 bg-white text-slate-900 border border-slate-200 hover:bg-slate-50"
+                                    >
+                                        <span className="relative z-10">Download Report</span>
+                                        <ArrowRight size={16} className="relative z-10 group-hover:translate-x-2 transition-transform" />
+                                    </a>
+                                </div>
+
+                                <a 
+                                    href={`tel:${supportPhone.replace(/\s+/g, '')}`}
+                                    className="glass-panel-elite flex items-center gap-5 rounded-[20px] px-8 py-6 md:py-7 border-white/60 bg-white/40 shadow-xl group hover:bg-white transition-all text-left shrink-0"
+                                >
                                     <div className="w-12 h-12 rounded-full bg-slate-900 flex items-center justify-center text-white shrink-0 group-hover:bg-[var(--color-brand-pink)] transition-colors">
                                         <Phone size={18} />
                                     </div>
-                                    <div className="text-left">
+                                    <div>
                                         <p className="text-[8px] font-black uppercase tracking-[0.4em] text-slate-400 mb-0.5">Emergency Line</p>
                                         <p className="text-sm font-black text-slate-900 tracking-tighter">{supportPhone}</p>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </motion.div>
 
@@ -103,7 +120,7 @@ const Hero = () => {
                         </motion.div>
                     </div>
 
-                    {/* Right: Apple-Styled Device Frame */}
+                    {/* Right: Apple-Styled Device Frame with Auto-Carousel */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -113,29 +130,29 @@ const Hero = () => {
                         {/* Device Bezel - Clean Silver/White Apple Aesthetic */}
                         <div className="relative z-10 rounded-[48px] md:rounded-[64px] p-2 md:p-3 bg-white border border-slate-200 shadow-[0_40px_80px_-20px_rgba(15,23,42,0.15)] ring-1 ring-slate-900/5">
                             {/* Screen Area */}
-                            <div className="relative overflow-hidden rounded-[40px] md:rounded-[52px] bg-slate-50">
+                            <div className="relative overflow-hidden rounded-[40px] md:rounded-[52px] bg-slate-50 w-full h-[450px] lg:h-[600px]">
                                 <img
                                     src={MEDICAL_IMAGES.HERO_MAIN}
-                                    alt="Advanced Medical Technology"
-                                    className="w-full h-[450px] lg:h-[600px] object-cover transition-transform duration-700 ease-in-out hover:scale-105"
+                                    alt="Advanced Medical Diagnostics"
+                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out hover:scale-105"
                                     loading="eager"
                                 />
                                 
                                 {/* iOS Style Status Overlay / Telemetry */}
-                                <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md">
+                                <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md z-20">
                                     <div className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
                                     <span className="text-[10px] font-semibold tracking-wide text-white">System Active</span>
                                 </div>
 
                                 {/* iOS Style Widget Card (AI Diagnostics) */}
-                                <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 rounded-[28px] p-6 bg-white/80 backdrop-blur-2xl border border-white/50 shadow-lg">
-                                    <div className="flex items-center gap-3 mb-3">
-                                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500/10 text-blue-600">
+                                <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 rounded-[24px] p-5 md:p-6 bg-white border border-slate-100 shadow-[0_20px_40px_-15px_rgba(15,23,42,0.15)] z-20">
+                                    <div className="flex items-center gap-3 mb-2 md:mb-3">
+                                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-brand-pink)]/10 text-[var(--color-brand-pink)] shrink-0 animate-pulse">
                                             <Activity size={16} />
                                         </div>
-                                        <h3 className="text-xl font-bold text-slate-900 tracking-tight">AI Diagnostics</h3>
+                                        <h3 className="text-base md:text-lg font-black text-slate-900 tracking-tight">AI Diagnostics</h3>
                                     </div>
-                                    <p className="text-sm font-medium text-slate-600 leading-relaxed">
+                                    <p className="text-xs md:text-sm font-bold text-slate-500 leading-relaxed">
                                         Integrated smart-analysis systems for higher precision and absolute clarity in clinical results.
                                     </p>
                                 </div>

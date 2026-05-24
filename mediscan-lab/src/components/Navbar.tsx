@@ -1,7 +1,7 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { MapPin, Menu, Search, X, FlaskConical, Headphones, ArrowRight, ChevronDown } from 'lucide-react';
-import { siteData } from '../lib/siteData';
+import { siteData, handleExternalRedirect } from '../lib/siteData';
 
 const cityName = siteData.contact.location.split(',')[0]?.trim() || 'Kalaburagi';
 const topOffer = siteData.checkupPackages[0];
@@ -13,14 +13,24 @@ const primaryNav = [
     { label: 'Services', path: '/services' },
     { label: 'Lab Tests', path: '/tests' },
     { label: 'Health Packages', path: '/packages' },
+    { label: 'Download Report', path: siteData.reportsUrl, external: true },
     { label: 'Blog', path: '/blog' },
     { label: 'Contact', path: '/contact' }
-].filter((item, index, arr) => arr.findIndex((candidate) => candidate.path === item.path) === index);
+];
 
 const servicesDropdownItems = [
     { label: 'Radiology Services', path: '/radiology-services' },
     { label: 'Cardiology Services', path: '/cardiology-services' },
     { label: 'Clinical Laboratory Services', path: '/clinical-laboratory-services' }
+];
+
+const aboutUsDropdownItems = [
+    { label: 'Our Growth Path & Milestones', path: '/about-us#milestones' },
+    { label: 'Management', path: '/about-us#management' },
+    { label: 'Team of Empanelled Doctors', path: '/about-us#doctors' },
+    { label: 'Directors Message', path: '/about-us#director-message' },
+    { label: 'Chief Administrative Officer\'s Message', path: '/about-us#cao-message' },
+    { label: 'Our Clients', path: '/about-us#clients' }
 ];
 
 const navbarLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -30,8 +40,10 @@ const navbarLinkClass = ({ isActive }: { isActive: boolean }) =>
     }`;
 
 const Navbar = () => {
+    const base = (import.meta as any).env.BASE_URL || '/';
     const [isOpen, setIsOpen] = useState(false);
     const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+    const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
@@ -75,7 +87,7 @@ const Navbar = () => {
                     <div className="flex items-center justify-between gap-8">
                         {/* Logo */}
                         <Link to="/" className="shrink-0 flex items-center h-14 w-auto group">
-                            <img src="/logo.png" alt="Mediscan Labs" className="h-10 md:h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
+                            <img src={`${base}logo.png`} alt="Mediscan Labs" className="h-10 md:h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
                         </Link>
 
                         {/* Search - Desktop */}
@@ -107,7 +119,7 @@ const Navbar = () => {
                             </div>
 
                             <a
-                                href={siteData.bookingUrl}
+                                href={siteData.socials.whatsapp}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hidden md:flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest hover:bg-[var(--color-brand-pink)] transition-all shadow-lg shimmer-mask"
@@ -129,6 +141,47 @@ const Navbar = () => {
                     {/* Secondary Desktop Nav */}
                     <nav className="hidden lg:flex items-center justify-center gap-2 mt-4 pt-4 border-t border-slate-100">
                         {primaryNav.map((item) => {
+                            if (item.label === 'About') {
+                                return (
+                                    <div key={item.path} className="relative group">
+                                        <NavLink to={item.path} className={(props) => `${navbarLinkClass(props)} flex items-center gap-1`}>
+                                            {({ isActive }) => (
+                                                <>
+                                                    About Us
+                                                    <ChevronDown size={12} className="text-slate-400 group-hover:rotate-180 transition-transform duration-300" />
+                                                    {isActive && (
+                                                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[var(--color-brand-pink)] rounded-full" />
+                                                    )}
+                                                </>
+                                            )}
+                                        </NavLink>
+                                        {/* Dropdown Menu */}
+                                        <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                                            <div className="rounded-[24px] border border-slate-200/80 bg-white px-2 py-3 shadow-2xl flex flex-col gap-1 z-50">
+                                                {aboutUsDropdownItems.map((subItem) => (
+                                                    <Link 
+                                                        key={subItem.path} 
+                                                        to={subItem.path} 
+                                                        className="px-4 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.15em] text-slate-600 hover:text-[#986699] hover:bg-slate-50 transition-all text-left"
+                                                    >
+                                                        {subItem.label}
+                                                    </Link>
+                                                ))}
+                                                <div className="border-t border-slate-100 my-1 pt-1">
+                                                    <Link 
+                                                        to="/about-us" 
+                                                        className="px-4 py-3 rounded-2xl text-[9px] font-black uppercase tracking-[0.2em] text-[#986699] hover:text-[#7a4f7b] hover:bg-slate-50 transition-all text-left flex items-center justify-between"
+                                                    >
+                                                        <span>About Mediscan</span>
+                                                        <ArrowRight size={12} />
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            }
+
                             if (item.label === 'Services') {
                                 return (
                                     <div key={item.path} className="relative group">
@@ -170,6 +223,22 @@ const Navbar = () => {
                                 );
                             }
 
+                            if (item.external) {
+                                return (
+                                    <a
+                                        key={item.path}
+                                        href={item.path}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={(e) => handleExternalRedirect(e, item.path)}
+                                        className={navbarLinkClass({ isActive: false }) + ' flex items-center gap-1'}
+                                    >
+                                        {item.label}
+                                        <ArrowRight size={10} className="text-[var(--color-brand-pink)]" />
+                                    </a>
+                                );
+                            }
+
                             return (
                                 <NavLink key={item.path} to={item.path} className={navbarLinkClass}>
                                     {({ isActive }) => (
@@ -203,6 +272,44 @@ const Navbar = () => {
 
                             <div className="flex flex-col gap-3 mb-8">
                                 {primaryNav.map((item) => {
+                                    if (item.label === 'About') {
+                                        return (
+                                            <div key={item.path} className="flex flex-col gap-2 rounded-[20px] border border-slate-100 p-2 bg-white shadow-sm">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
+                                                    className="flex items-center justify-between px-4 h-14 w-full text-slate-600 transition-all"
+                                                >
+                                                    <span className="text-sm font-black uppercase tracking-widest text-slate-600">About Us</span>
+                                                    <ChevronDown size={18} className={`text-slate-400 transition-transform duration-300 ${isMobileAboutOpen ? 'rotate-180' : ''}`} />
+                                                </button>
+                                                {isMobileAboutOpen && (
+                                                    <div className="flex flex-col gap-2 px-2 pb-2 pl-4 border-t border-slate-50 pt-2">
+                                                        {aboutUsDropdownItems.map((subItem) => (
+                                                            <NavLink
+                                                                key={subItem.path}
+                                                                to={subItem.path}
+                                                                onClick={() => setIsOpen(false)}
+                                                                className={({ isActive }) => `flex items-center justify-between px-4 h-12 rounded-xl transition-all ${isActive ? 'bg-[#f4eef5] text-[#986699] font-black' : 'text-slate-600 font-bold'
+                                                                    }`}
+                                                            >
+                                                                <span className="text-xs uppercase tracking-wider">{subItem.label}</span>
+                                                            </NavLink>
+                                                        ))}
+                                                        <NavLink
+                                                            to="/about-us"
+                                                            onClick={() => setIsOpen(false)}
+                                                            className="flex items-center justify-between px-4 h-12 rounded-xl text-[#986699] hover:text-[#7a4f7b] font-black"
+                                                        >
+                                                            <span className="text-xs uppercase tracking-wider">About Mediscan</span>
+                                                            <ArrowRight size={14} />
+                                                        </NavLink>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    }
+
                                     if (item.label === 'Services') {
                                         return (
                                             <div key={item.path} className="flex flex-col gap-2 rounded-[20px] border border-slate-100 p-2 bg-white shadow-sm">
@@ -241,6 +348,22 @@ const Navbar = () => {
                                         );
                                     }
 
+                                    if (item.external) {
+                                        return (
+                                            <a
+                                                key={item.path}
+                                                href={item.path}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={() => setIsOpen(false)}
+                                                className="flex items-center justify-between px-6 h-16 rounded-[20px] border border-slate-100 transition-all bg-white text-slate-600"
+                                            >
+                                                <span className="text-sm font-black uppercase tracking-widest">{item.label}</span>
+                                                <ArrowRight size={18} className="text-slate-300" />
+                                            </a>
+                                        );
+                                    }
+
                                     return (
                                         <NavLink
                                             key={item.path}
@@ -257,19 +380,19 @@ const Navbar = () => {
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
-                                <a href={`tel:${siteData.contact.phones[0]}`} className="flex flex-col items-center justify-center p-6 rounded-[24px] bg-slate-50 border border-slate-100">
+                                <a href={`tel:${siteData.contact.phones[4]}`} className="flex flex-col items-center justify-center p-6 rounded-[24px] bg-slate-50 border border-slate-100">
                                     <PhoneIcon className="text-[var(--color-brand-pink)] mb-2" size={24} />
                                     <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Call Support</span>
                                 </a>
                                 <a
-                                    href={siteData.bookingUrl}
+                                    href="https://wa.me/919035534724"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setIsOpen(false)}
                                     className="flex flex-col items-center justify-center p-6 rounded-[24px] bg-[var(--color-brand-pink)] text-white shadow-xl"
                                 >
                                     <FlaskConical className="mb-2" size={24} />
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-white">Book Lab</span>
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-white">WhatsApp Chat</span>
                                 </a>
                             </div>
                         </div>
