@@ -3,6 +3,7 @@ import { ArrowLeft, ExternalLink, Calendar, User, Clock, Share2, ShieldCheck } f
 import { getPostBySlug, toParagraphs, handleExternalRedirect } from '../lib/siteData';
 import { motion } from 'framer-motion';
 import { MEDICAL_IMAGES } from '../lib/medical_images';
+import SmartImage from '../components/SmartImage';
 
 const formatDate = (value: string) => {
     if (!value) return 'No date';
@@ -30,8 +31,8 @@ const BlogPost = () => {
         <div className="min-h-screen pb-20">
             {/* Hero Header */}
             <header className="relative h-[450px] md:h-[600px] overflow-hidden">
-                <img 
-                    src={MEDICAL_IMAGES.BLOG_HEADER} 
+                <SmartImage
+                    src={MEDICAL_IMAGES.BLOG_HEADER}
                     alt={post.title}
                     className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -121,8 +122,8 @@ const BlogPost = () => {
                         </div>
 
                         <div className="rounded-[40px] overflow-hidden relative group shadow-2xl">
-                            <img 
-                                src={MEDICAL_IMAGES.CHECKUP_1} 
+                            <SmartImage
+                                src={MEDICAL_IMAGES.CHECKUP_1}
                                 className="w-full h-[350px] object-cover transition-transform duration-1000 group-hover:scale-110"
                                 alt="Checkup"
                             />

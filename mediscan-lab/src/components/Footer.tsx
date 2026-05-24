@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone, Facebook, Instagram, Linkedin, MessageCircle } from 'lucide-react';
-import { siteData, handleExternalRedirect } from '../lib/siteData';
+import { Mail, MapPin, Phone, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { siteData } from '../lib/siteData';
 
 const Footer = () => {
-    const base = (import.meta as any).env.BASE_URL || '/';
+    const primaryPhone = siteData.contact.phones[1] ?? '+91 9035534724';
     const primaryEmail = siteData.contact.emails[0] ?? 'info@mediscandiagnostic.com';
 
     const socials = [
-        { icon: Facebook, href: siteData.socials.facebook, color: 'hover:text-[#1877F2]' },
-        { icon: Instagram, href: siteData.socials.instagram, color: 'hover:text-[#E4405F]' },
-        { icon: Linkedin, href: siteData.socials.linkedin, color: 'hover:text-[#0A66C2]' },
-        { icon: MessageCircle, href: siteData.socials.whatsapp, color: 'hover:text-[#25D366]' }
+        { icon: Facebook, href: 'https://www.facebook.com/MediScanLabOfficial', color: 'hover:text-[#1877F2]' },
+        { icon: Linkedin, href: 'https://www.linkedin.com/company/mediscan-labs/', color: 'hover:text-[#0A66C2]' },
+        { icon: Instagram, href: 'https://www.instagram.com/mediscan_labs/', color: 'hover:text-[#E4405F]' }
     ];
 
     return (

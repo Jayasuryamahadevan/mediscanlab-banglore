@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ShieldCheck, Clock, Award, Activity } from 'lucide-react';
 import { MEDICAL_IMAGES } from '../lib/medical_images';
+import SmartImage from './SmartImage';
 
 const features = [
     {
@@ -72,9 +73,9 @@ const WhyChooseUs = () => {
                                 transition={{ duration: 0.8 }}
                                 className="h-full w-full bg-slate-200"
                             >
-                                <img 
-                                    src={MEDICAL_IMAGES.LAB_TEAM} 
-                                    alt="Advanced Laboratory Technology" 
+                                <SmartImage
+                                    src={MEDICAL_IMAGES.LAB_TEAM}
+                                    alt="Advanced Laboratory Technology"
                                     className="h-full w-full object-cover grayscale-[0.2]"
                                     loading="lazy"
                                 />

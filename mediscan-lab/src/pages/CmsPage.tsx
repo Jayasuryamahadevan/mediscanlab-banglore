@@ -189,7 +189,7 @@ const CmsPage = () => {
                             </p>
                             <div className="mt-8 pt-8 border-t border-white/60">
                                 <p className="text-[10px] font-black text-[var(--color-muted)] uppercase tracking-widest mb-2">Direct Line</p>
-                                <p className="text-2xl font-black text-black tracking-tighter leading-none">{siteData.contact.phones[0] || '+91 98765 43210'}</p>
+                                <p className="text-2xl font-black text-black tracking-tighter leading-none">{siteData.contact.phones[1] || '+91 9035534724'}</p>
                             </div>
                         </div>
                     </aside>

@@ -7,7 +7,13 @@ const themeName = 'mediscan-react-theme';
 const themeDir = path.join(process.cwd(), themeName);
 
 console.log('1. Building Vite React App...');
-execSync('npm run build', { stdio: 'inherit' });
+execSync('npm run build', {
+    stdio: 'inherit',
+    env: {
+        ...process.env,
+        WP_THEME_BUILD: 'true'
+    }
+});
 
 console.log('2. Creating WordPress Theme Structure...');
 if (!fs.existsSync(themeDir)) {

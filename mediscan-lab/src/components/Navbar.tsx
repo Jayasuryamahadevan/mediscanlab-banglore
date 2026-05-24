@@ -5,6 +5,9 @@ import { siteData, handleExternalRedirect } from '../lib/siteData';
 
 const cityName = siteData.contact.location.split(',')[0]?.trim() || 'Kalaburagi';
 const topOffer = siteData.checkupPackages[0];
+const supportPhone = '919035534724';
+const whatsappSupportUrl = `https://wa.me/${supportPhone}?text=${encodeURIComponent("Hello! I'm interested in Mediscan services.")}`;
+const reportDownloadUrl = 'https://reports.mediscanlab.com/';
 const quickLinkMap = new Map(siteData.quickLinks.map((item) => [item.title.toLowerCase(), item.path]));
 const resolvePath = (title: string, fallback: string) => quickLinkMap.get(title.toLowerCase()) ?? fallback;
 
@@ -24,6 +27,16 @@ const servicesDropdownItems = [
     { label: 'Cardiology Services', path: '/cardiology-services' },
     { label: 'Clinical Laboratory Services', path: '/clinical-laboratory-services' }
 ];
+const aboutDropdownItems = [
+    { label: 'Company Profile', path: '/company-profile' },
+    { label: 'Our Growth Path & Milestones', path: '/our-growth-path-miletones' },
+    { label: 'Management', path: '/management' },
+    { label: 'Team of Empanelled Doctors', path: '/team-of-empanelled-doctors' },
+    { label: 'Directors Message', path: '/directors-message' },
+    { label: 'Chief Administrative Officer’s Message', path: '/chief-administrative-officers-message' },
+    { label: 'Our Clients', path: '/our-clients' },
+    { label: 'Our Growth Partners', path: '/our-growth-partners' }
+];
 
 const aboutUsDropdownItems = [
     { label: 'Our Growth Path & Milestones', path: '/about-us#milestones' },
@@ -36,8 +49,8 @@ const aboutUsDropdownItems = [
 
 const navbarLinkClass = ({ isActive }: { isActive: boolean }) =>
     `relative px-5 py-2.5 text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-400 ${isActive
-        ? 'text-[var(--color-brand-pink)] brightness-110 drop-shadow-sm'
-        : 'text-slate-600 hover:text-[var(--color-brand-black)] hover:translate-y-[-1px]'
+        ? 'text-white drop-shadow-sm'
+        : 'text-white/85 hover:text-white hover:translate-y-[-1px]'
     }`;
 
 const Navbar = () => {
@@ -63,8 +76,8 @@ const Navbar = () => {
     return (
         <header className="sticky top-0 z-50">
             {/* Announcement Bar */}
-            <div className="mx-2 md:mx-4 mt-2 md:mt-3 rounded-full glass-panel-soft border-white/20 bg-slate-900/90 text-white overflow-hidden relative backdrop-blur-xl shadow-lg">
-                <div className="absolute inset-0 bg-[var(--color-brand-pink)]/20 skew-x-[-20deg] transform translate-x-[-50%]" />
+            <div className="mx-2 md:mx-4 mt-2 md:mt-3 rounded-full glass-panel-soft border-white/20 bg-[#986699] text-white overflow-hidden relative backdrop-blur-xl shadow-lg">
+                <div className="absolute inset-0 bg-white/10 skew-x-[-20deg] transform translate-x-[-50%]" />
                 <div className="container-shell flex flex-wrap items-center justify-between gap-3 py-2 md:py-2.5 relative z-10">
                     <div className="flex items-center gap-3 md:gap-4">
                         <span className="flex items-center gap-2 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-white">
@@ -72,18 +85,18 @@ const Navbar = () => {
                             Live Offer
                         </span>
                         <p className="text-[10px] md:text-xs font-black tracking-widest uppercase text-white/90">
-                            {topOffer?.title ?? 'Full Body Checkup'} <span className="text-[var(--color-brand-pink)] brightness-125 ml-2 font-black">@{topOffer?.price ?? '₹1000'}</span>
+                            {topOffer?.title ?? 'Full Body Checkup'} <span className="text-white brightness-125 ml-2 font-black">@{topOffer?.price ?? '₹1000'}</span>
                         </p>
                     </div>
                     <Link to="/packages" className="hidden sm:inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/80 hover:text-white transition-all hover:translate-x-1">
                         View Packages
-                        <ArrowRight size={12} className="text-[var(--color-brand-pink)] brightness-125" />
+                        <ArrowRight size={12} className="text-white brightness-125" />
                     </Link>
                 </div>
             </div>
 
             {/* Main Nav */}
-            <div className="mx-2 md:mx-4 mt-2 md:mt-4 rounded-[24px] md:rounded-[32px] glass-panel-elite border-white/60 bg-white/70 shadow-2xl">
+            <div className="mx-2 md:mx-4 mt-2 md:mt-4 rounded-[24px] md:rounded-[32px] glass-panel-elite border-white/40 bg-[#986699] shadow-2xl">
                 <div className="container-shell py-4">
                     <div className="flex items-center justify-between gap-8">
                         {/* Logo */}
@@ -94,7 +107,7 @@ const Navbar = () => {
                         {/* Search - Desktop */}
                         <div className="hidden lg:flex items-center flex-1 max-w-xl">
                             <form onSubmit={handleSearch} className="w-full">
-                                <label className="flex h-11 items-center gap-4 rounded-2xl bg-slate-50 border border-slate-100 px-5 group focus-within:bg-white focus-within:border-[var(--color-brand-pink)]/30 transition-all shadow-inner">
+                                <label className="flex h-11 items-center gap-4 rounded-2xl bg-white/95 border border-white/70 px-5 group focus-within:bg-white focus-within:border-white transition-all shadow-inner">
                                     <Search size={18} className="text-slate-300 group-focus-within:text-[var(--color-brand-pink)]" />
                                     <input
                                         value={searchQuery}
@@ -109,21 +122,21 @@ const Navbar = () => {
 
                         {/* Actions */}
                         <div className="flex items-center gap-4">
-                            <div className="hidden xl:flex items-center gap-3 pr-4 border-r border-slate-100">
-                                <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400">
+                            <div className="hidden xl:flex items-center gap-3 pr-4 border-r border-white/20">
+                                <div className="w-9 h-9 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white">
                                     <MapPin size={18} />
                                 </div>
                                 <div className="leading-none">
-                                    <span className="block text-[8px] font-black uppercase text-slate-400 tracking-widest mb-1">Center</span>
-                                    <span className="text-sm font-black text-[var(--color-brand-black)]">{cityName}</span>
+                                    <span className="block text-[8px] font-black uppercase text-white/70 tracking-widest mb-1">Center</span>
+                                    <span className="text-sm font-black text-white">{cityName}</span>
                                 </div>
                             </div>
 
                             <a
-                                href={siteData.socials.whatsapp}
+                                href={whatsappSupportUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="hidden md:flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest hover:bg-[var(--color-brand-pink)] transition-all shadow-lg shimmer-mask"
+                                className="hidden md:flex items-center gap-2 px-6 py-3 rounded-2xl bg-white text-[#986699] text-[10px] font-black uppercase tracking-widest hover:bg-white/90 transition-all shadow-lg shimmer-mask"
                             >
                                 <Headphones size={16} />
                                 Support
@@ -131,7 +144,7 @@ const Navbar = () => {
 
                             <button
                                 aria-label="Toggle menu"
-                                className="lg:hidden w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 text-slate-900 border border-slate-100 hover:bg-slate-900 hover:text-white transition-all"
+                                className="lg:hidden w-12 h-12 flex items-center justify-center rounded-2xl bg-white/15 text-white border border-white/30 hover:bg-white hover:text-[#986699] transition-all"
                                 onClick={() => setIsOpen((prev) => !prev)}
                             >
                                 {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -140,7 +153,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Secondary Desktop Nav */}
-                    <nav className="hidden lg:flex items-center justify-center gap-2 mt-4 pt-4 border-t border-slate-100">
+                    <nav className="hidden lg:flex items-center justify-center gap-2 mt-4 pt-4 border-t border-white/20">
                         {primaryNav.map((item) => {
                             if (item.label === 'About') {
                                 return (
@@ -149,34 +162,24 @@ const Navbar = () => {
                                             {({ isActive }) => (
                                                 <>
                                                     About Us
-                                                    <ChevronDown size={12} className="text-slate-400 group-hover:rotate-180 transition-transform duration-300" />
+                                                    <ChevronDown size={12} className="text-white/70 group-hover:rotate-180 transition-transform duration-300" />
                                                     {isActive && (
-                                                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[var(--color-brand-pink)] rounded-full" />
+                                                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-white rounded-full" />
                                                     )}
                                                 </>
                                             )}
                                         </NavLink>
-                                        {/* Dropdown Menu */}
-                                        <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
-                                            <div className="rounded-[24px] border border-slate-200/80 bg-white px-2 py-3 shadow-2xl flex flex-col gap-1 z-50">
-                                                {aboutUsDropdownItems.map((subItem) => (
-                                                    <Link 
-                                                        key={subItem.path} 
-                                                        to={subItem.path} 
+                                        <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                                            <div className="rounded-[24px] border border-slate-200/80 bg-white px-2 py-3 shadow-2xl flex flex-col gap-1 z-50 max-h-[420px] overflow-auto">
+                                                {aboutDropdownItems.map((subItem) => (
+                                                    <Link
+                                                        key={subItem.path}
+                                                        to={subItem.path}
                                                         className="px-4 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.15em] text-slate-600 hover:text-[#986699] hover:bg-slate-50 transition-all text-left"
                                                     >
                                                         {subItem.label}
                                                     </Link>
                                                 ))}
-                                                <div className="border-t border-slate-100 my-1 pt-1">
-                                                    <Link 
-                                                        to="/about-us" 
-                                                        className="px-4 py-3 rounded-2xl text-[9px] font-black uppercase tracking-[0.2em] text-[#986699] hover:text-[#7a4f7b] hover:bg-slate-50 transition-all text-left flex items-center justify-between"
-                                                    >
-                                                        <span>About Mediscan</span>
-                                                        <ArrowRight size={12} />
-                                                    </Link>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -190,9 +193,9 @@ const Navbar = () => {
                                             {({ isActive }) => (
                                                 <>
                                                     Services
-                                                    <ChevronDown size={12} className="text-slate-400 group-hover:rotate-180 transition-transform duration-300" />
+                                                    <ChevronDown size={12} className="text-white/70 group-hover:rotate-180 transition-transform duration-300" />
                                                     {isActive && (
-                                                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[var(--color-brand-pink)] rounded-full" />
+                                                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-white rounded-full" />
                                                     )}
                                                 </>
                                             )}
@@ -246,7 +249,7 @@ const Navbar = () => {
                                         <>
                                             {item.label}
                                             {isActive && (
-                                                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[var(--color-brand-pink)] rounded-full" />
+                                                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-white rounded-full" />
                                             )}
                                         </>
                                     )}
@@ -257,7 +260,7 @@ const Navbar = () => {
 
                     {/* Mobile Menu */}
                     {isOpen && (
-                        <div className="mt-4 lg:hidden animate-in fade-in slide-in-from-top-4 duration-300 pb-6 border-t border-slate-50 pt-6">
+                        <div className="mt-4 lg:hidden animate-in fade-in slide-in-from-top-4 duration-300 pb-6 border-t border-white/20 pt-6">
                             <form onSubmit={handleSearch} className="mb-6">
                                 <label className="flex h-14 items-center gap-4 rounded-[20px] bg-slate-50 border border-slate-100 px-6 shadow-inner">
                                     <Search size={20} className="text-slate-300" />
@@ -381,19 +384,19 @@ const Navbar = () => {
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
-                                <a href={`tel:${siteData.contact.phones[4]}`} className="flex flex-col items-center justify-center p-6 rounded-[24px] bg-slate-50 border border-slate-100">
+                                <a href={whatsappSupportUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center p-6 rounded-[24px] bg-slate-50 border border-slate-100">
                                     <PhoneIcon className="text-[var(--color-brand-pink)] mb-2" size={24} />
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Call Support</span>
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">WhatsApp Support</span>
                                 </a>
                                 <a
-                                    href="https://wa.me/919035534724"
+                                    href={reportDownloadUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setIsOpen(false)}
-                                    className="flex flex-col items-center justify-center p-6 rounded-[24px] bg-[var(--color-brand-pink)] text-white shadow-xl"
+                                    className="flex flex-col items-center justify-center p-6 rounded-[24px] bg-[#986699] text-white shadow-xl"
                                 >
                                     <FlaskConical className="mb-2" size={24} />
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-white">WhatsApp Chat</span>
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-white">Download Report</span>
                                 </a>
                             </div>
                         </div>

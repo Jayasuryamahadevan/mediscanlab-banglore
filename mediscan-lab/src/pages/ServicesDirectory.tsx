@@ -4,6 +4,7 @@ import { ArrowRight, Microscope, Scan, Stethoscope, Activity, Heart, Shield } fr
 import { serviceHighlights } from '../lib/siteData';
 
 import { MEDICAL_IMAGES, SERVICE_IMAGE_SET } from '../lib/medical_images';
+import SmartImage from '../components/SmartImage';
 
 const serviceIcons = [
     <Scan size={24} />,
@@ -20,8 +21,8 @@ const ServicesDirectory = () => {
             {/* Editorial Header */}
             <header className="bg-black pt-32 lg:pt-40 pb-48 lg:pb-56 relative overflow-hidden bg-slate-900">
                 <div className="absolute inset-0">
-                    <img 
-                        src={MEDICAL_IMAGES.DIAGNOSTICS_HEADER} 
+                    <SmartImage
+                        src={MEDICAL_IMAGES.DIAGNOSTICS_HEADER}
                         className="w-full h-full object-cover opacity-80"
                         alt="Background"
                         loading="eager"
@@ -61,8 +62,8 @@ const ServicesDirectory = () => {
                                 transition={{ duration: 1 }}
                                 className="relative z-10 glass-panel-elite rounded-[40px] xl:rounded-[60px] p-3 xl:p-4 bg-white/10 border-white/20 shadow-2xl backdrop-blur-2xl"
                             >
-                                <img 
-                                    src={MEDICAL_IMAGES.FACILITY} 
+                                <SmartImage
+                                    src={MEDICAL_IMAGES.FACILITY}
                                     className="w-full h-auto aspect-[4/3] object-cover rounded-[30px] xl:rounded-[50px] shadow-2xl"
                                     alt="Medical Facility"
                                     loading="eager"
@@ -92,7 +93,7 @@ const ServicesDirectory = () => {
                             </div>
 
                             <div className="relative h-[280px] overflow-hidden bg-slate-100">
-                                <img
+                                <SmartImage
                                     src={SERVICE_IMAGE_SET[i % SERVICE_IMAGE_SET.length]}
                                     alt={service.title}
                                     className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, BookOpen } from 'lucide-react';
 import { sortedPosts } from '../lib/siteData';
 import { MEDICAL_IMAGES, BLOG_IMAGE_SET } from '../lib/medical_images';
+import SmartImage from '../components/SmartImage';
 
 const blogImages = BLOG_IMAGE_SET;
 
@@ -31,7 +32,7 @@ const BlogList = () => {
 
                 {/* Header Banner */}
                 <div className="relative overflow-hidden rounded-[48px] border border-white/80 shadow-2xl h-[350px] md:h-[450px] bg-slate-900">
-                    <img
+                    <SmartImage
                         src={MEDICAL_IMAGES.BLOG_HEADER}
                         alt="Mediscan Health Blog"
                         className="absolute inset-0 h-full w-full object-cover"
@@ -64,7 +65,7 @@ const BlogList = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="group relative overflow-hidden rounded-[56px] border border-white/80 shadow-[0_50px_100px_-20px_rgba(2,6,23,0.3)] h-[500px] md:h-[600px] bg-slate-900"
                     >
-                        <img
+                        <SmartImage
                             src={blogImages[0]}
                             alt={featured.title}
                             className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -103,7 +104,7 @@ const BlogList = () => {
                         >
                             {/* Thumbnail */}
                             <div className="relative h-[240px] overflow-hidden bg-slate-100">
-                                <img
+                                <SmartImage
                                     src={blogImages[(i + 1) % blogImages.length]}
                                     alt={post.title}
                                     className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"

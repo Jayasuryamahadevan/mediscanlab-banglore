@@ -1,70 +1,47 @@
 import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
-import { testimonials } from '../lib/siteData';
 
-const defaultReviews = [
+const reviews = [
     {
-        name: 'Sangamesh',
-        content: 'Good and accurate reports of blood investigation. Staff are good. Reporting is fast.',
-        source: 'Google Reviews'
+        text: "Good and accurate reports of blood investigation. Ultrasound reports are average by sir but madam reports are to up to the mark. Staff are good. Reporting is fast.",
+        author: "Sangamesh",
+        rating: 5
     },
     {
-        name: 'Manjunath Bendigeri',
-        content: 'Service is good, Cordial friendly staff, place is maintained neat and clean and also hygienic.',
-        source: 'Google Reviews'
-    },
-    {
-        name: 'Patient Trust',
-        content: 'Trusted by 50,000+ patients monthly for accurate diagnostics and compassionate care with NABL & ISO certifications.',
-        source: 'Mediscan Lab'
+        text: "Service is good, Coordial friendly staff, place is maintained neat n clean and also hygienic.",
+        author: "Manjunath Bendigeri",
+        rating: 5
     }
 ];
 
-const reviewList = testimonials.length > 0 ? testimonials : defaultReviews;
-
 const Reviews = () => {
     return (
-        <section className="px-4 py-12 md:py-24">
+        <section className="px-4 py-12 md:py-24 bg-slate-50">
             <div className="container-shell">
-                <div className="rounded-[48px] border border-slate-200/60 bg-white/60 px-8 py-16 md:px-16 shadow-xl backdrop-blur-xl">
-                    <div className="text-center max-w-2xl mx-auto mb-16">
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--color-brand-pink)] block mb-4">
-                            Patient Testimonials
-                        </span>
-                        <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[var(--color-brand-black)] leading-[1.1]">
-                            What Our <span className="text-slate-400">Patients</span> Say
-                        </h2>
-                        <p className="text-slate-500 font-medium mt-4 text-lg">
-                            Real feedback from the community we serve every day.
-                        </p>
-                    </div>
-
-                    <div className="grid gap-8 md:grid-cols-3">
-                        {reviewList.map((review, index) => (
-                            <motion.div
-                                key={review.name}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.15, duration: 0.6 }}
-                                className="group rounded-[32px] border border-slate-100 bg-white p-8 shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col relative"
-                            >
-                                <Quote size={32} className="text-[var(--color-brand-pink)]/10 absolute top-6 right-6" />
-                                <div className="flex gap-1 mb-6">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
-                                    ))}
-                                </div>
-                                <p className="text-sm font-medium text-slate-600 leading-relaxed flex-1">
-                                    "{review.content}"
-                                </p>
-                                <div className="mt-8 pt-6 border-t border-slate-50">
-                                    <p className="text-base font-black text-slate-900">{review.name}</p>
-                                    <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mt-1">{review.source}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                <div className="text-center mb-12">
+                    <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-muted)]">Testimonials</span>
+                    <h2 className="text-3xl md:text-5xl mt-3 font-extrabold text-[var(--color-ink)] tracking-tight">What Our Patients Said</h2>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                    {reviews.map((review, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className="p-6 md:p-8 rounded-[24px] bg-white shadow-xl border border-slate-100"
+                        >
+                            <div className="flex gap-1 mb-4 text-[#986699]">
+                                {[...Array(review.rating)].map((_, i) => (
+                                    <svg key={i} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                    </svg>
+                                ))}
+                            </div>
+                            <p className="text-slate-600 font-medium leading-relaxed italic">"{review.text}"</p>
+                            <h4 className="mt-6 font-bold text-lg text-[var(--color-brand-black)]">- {review.author}</h4>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </section>

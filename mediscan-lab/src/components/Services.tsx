@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, FlaskConical, Layers3, MessageCircle, ChevronRight } from 'lucide-react';
 import { siteData, checkupPackages, sortedPosts, handleExternalRedirect } from '../lib/siteData';
 import { MEDICAL_IMAGES, SERVICE_IMAGE_SET, BLOG_IMAGE_SET } from '../lib/medical_images';
+import SmartImage from './SmartImage';
 
 const formatDate = (value: string) => {
     if (!value) {
@@ -52,8 +53,8 @@ const Services = () => {
                         {packageCards.map((card, i) => (
                             <article key={`${card.title}-${card.price}`} className="group glass-panel-soft overflow-hidden rounded-[32px] flex flex-col h-full hover:shadow-2xl transition-all duration-500 border border-slate-200/50 bg-slate-50">
                                 <div className="relative h-44 overflow-hidden bg-slate-200">
-                                    <img 
-                                        src={SERVICE_IMAGE_SET[i % SERVICE_IMAGE_SET.length]} 
+                                    <SmartImage
+                                        src={SERVICE_IMAGE_SET[i % SERVICE_IMAGE_SET.length]}
                                         alt={card.title}
                                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                         loading="lazy"
@@ -124,10 +125,10 @@ const Services = () => {
                         }
                     ].map((service) => (
                         <article key={service.title} className="group relative h-[400px] overflow-hidden rounded-[32px] shadow-lg">
-                            <img 
-                                src={service.img} 
-                                alt={service.title} 
-                                className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                            <SmartImage
+                                src={service.img}
+                                alt={service.title}
+                                className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent" />
                             <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
@@ -163,7 +164,7 @@ const Services = () => {
                         {postCards.map((post, i) => (
                             <article key={post.path} className="group flex flex-col sm:flex-row gap-6 p-4 rounded-[32px] hover:bg-white transition-all duration-500 border border-transparent hover:border-slate-100 hover:shadow-2xl">
                                 <div className="relative h-48 sm:h-44 sm:w-44 shrink-0 overflow-hidden rounded-[24px]">
-                                    <img
+                                    <SmartImage
                                         src={BLOG_IMAGE_SET[i % BLOG_IMAGE_SET.length]}
                                         alt={post.title}
                                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"

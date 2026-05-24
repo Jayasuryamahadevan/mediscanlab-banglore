@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { sortedProducts } from '../lib/siteData';
 import { motion } from 'framer-motion';
 import { Package, ArrowRight, ShoppingCart } from 'lucide-react';
-import { PRODUCT_IMAGE_SET } from '../lib/medical_images';
+import { MEDICAL_IMAGES } from '../lib/medical_images';
+import SmartImage from '../components/SmartImage';
 
 const ProductCatalog = () => {
     return (
@@ -46,8 +47,8 @@ const ProductCatalog = () => {
                             className="group glass-panel-elite rounded-[40px] overflow-hidden flex flex-col hover:translate-y-[-8px] transition-all duration-500 shadow-xl border-white/60"
                         >
                             <div className="relative h-[260px] overflow-hidden">
-                                <img 
-                                    src={PRODUCT_IMAGE_SET[i % PRODUCT_IMAGE_SET.length]} 
+                                <SmartImage
+                                    src={MEDICAL_IMAGES.MEDICAL_EQUIPMENT}
                                     alt={item.title}
                                     className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                 />

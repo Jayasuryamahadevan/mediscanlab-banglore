@@ -4,8 +4,9 @@ import { FlaskConical, Package, Search, Phone, ArrowRight, Activity } from 'luci
 import { motion } from 'framer-motion';
 import { siteData, handleExternalRedirect } from '../lib/siteData';
 import { MEDICAL_IMAGES } from '../lib/medical_images';
+import SmartImage from './SmartImage';
 
-const supportPhone = siteData.contact.phones[4] ?? '+91 90355 34721';
+const supportPhone = siteData.contact.phones[1] ?? '+91 9035534724';
 
 const Hero = () => {
     const navigate = useNavigate();
@@ -23,9 +24,11 @@ const Hero = () => {
             <div className="absolute inset-0 z-0">
                 <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[var(--color-brand-pink)]/5 rounded-full blur-[120px] animate-pulse" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-slate-900/5 rounded-full blur-[120px]" />
-                <div 
-                    className="absolute inset-0 bg-cover bg-center opacity-[0.03] grayscale" 
-                    style={{ backgroundImage: `url('${MEDICAL_IMAGES.LAB_TEAM}')` }} 
+                <SmartImage
+                    src={MEDICAL_IMAGES.LAB_TEAM}
+                    alt="Lab team background"
+                    className="absolute inset-0 h-full w-full object-cover opacity-[0.03] grayscale pointer-events-none"
+                    style={{ position: 'absolute' }}
                 />
             </div>
 
@@ -130,8 +133,8 @@ const Hero = () => {
                         {/* Device Bezel - Clean Silver/White Apple Aesthetic */}
                         <div className="relative z-10 rounded-[48px] md:rounded-[64px] p-2 md:p-3 bg-white border border-slate-200 shadow-[0_40px_80px_-20px_rgba(15,23,42,0.15)] ring-1 ring-slate-900/5">
                             {/* Screen Area */}
-                            <div className="relative overflow-hidden rounded-[40px] md:rounded-[52px] bg-slate-50 w-full h-[450px] lg:h-[600px]">
-                                <img
+                            <div className="relative overflow-hidden rounded-[40px] md:rounded-[52px] bg-slate-50">
+                                <SmartImage
                                     src={MEDICAL_IMAGES.HERO_MAIN}
                                     alt="Advanced Medical Diagnostics"
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out hover:scale-105"

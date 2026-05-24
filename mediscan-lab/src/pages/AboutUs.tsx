@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { siteData, toParagraphs, getAnyContentByPath } from '../lib/siteData';
-import { MapPin, Users, Award, CheckCircle2, Building2, Quote, Briefcase } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { siteData, toParagraphs, getAnyContentByPath, getPageByPath } from '../lib/siteData';
+import { MapPin, Users, Award, CheckCircle2 } from 'lucide-react';
 import { MEDICAL_IMAGES } from '../lib/medical_images';
+import SmartImage from '../components/SmartImage';
 
 const milestonesData = [
     { year: '1995', title: 'Radiology Department', desc: 'Inaugurated our dedicated Radiology Department offering initial scanning procedures.' },
@@ -87,19 +89,24 @@ const AboutUs = () => {
     const pageContent = getAnyContentByPath('/about-us');
     const contentText = pageContent ? (pageContent.content ?? pageContent.excerpt) : siteData.about.excerpt;
     const paragraphs = toParagraphs(contentText, 2);
-    const location = useLocation();
-
-    useEffect(() => {
-        if (location.hash) {
-            const id = location.hash.substring(1);
-            const element = document.getElementById(id);
-            if (element) {
-                setTimeout(() => {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 150);
-            }
-        }
-    }, [location]);
+    const aboutDetailSections = [
+        { title: 'Company Profile', path: '/company-profile' },
+        { title: 'Our Growth Path & Milestones', path: '/our-growth-path-miletones' },
+        { title: 'Management', path: '/management' },
+        { title: 'Team of Empanelled Doctors', path: '/team-of-empanelled-doctors' },
+        { title: 'Directors Message', path: '/directors-message' },
+        { title: 'Chief Administrative Officer’s Message', path: '/chief-administrative-officers-message' },
+        { title: 'Our Clients', path: '/our-clients' },
+        { title: 'Our Growth Partners', path: '/our-growth-partners' },
+    ].map((item) => {
+        const page = getPageByPath(item.path);
+        const content = page ? (page.content ?? page.excerpt) : '';
+        return {
+            title: page?.title ?? item.title,
+            path: page?.path ?? item.path,
+            excerpt: toParagraphs(content, 1)[0] ?? ''
+        };
+    });
 
     return (
         <section className="px-4 py-10 pb-32 bg-slate-50/50 font-outfit relative">
@@ -107,7 +114,7 @@ const AboutUs = () => {
 
                 {/* Hero Banner Section */}
                 <div className="relative overflow-hidden rounded-[48px] border border-white/70 shadow-2xl h-[500px] md:h-[650px] bg-slate-900">
-                    <img
+                    <SmartImage
                         src={MEDICAL_IMAGES.ABOUT_HEADER}
                         alt="Mediscan Lab Facility"
                         className="absolute inset-0 h-full w-full object-cover"
@@ -196,7 +203,7 @@ const AboutUs = () => {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="relative overflow-hidden rounded-[40px] min-h-[500px] shadow-2xl"
                     >
-                        <img
+                        <SmartImage
                             src={MEDICAL_IMAGES.LAB_TEAM}
                             alt="Medical Team"
                             className="absolute inset-0 h-full w-full object-cover"
@@ -212,141 +219,79 @@ const AboutUs = () => {
                     </motion.div>
                 </div>
 
-                {/* Milestones / Growth Path */}
-                <div id="milestones" className="space-y-12 scroll-mt-28">
-                    <div className="text-center space-y-4">
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--color-brand-pink)] block">Our Growth Path</span>
-                        <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter">Milestones & History</h2>
-                        <div className="w-12 h-1 bg-[var(--color-brand-pink)] mx-auto rounded-full" />
-                    </div>
-
-                    <div className="relative border-l-2 border-slate-200 ml-4 md:ml-32 space-y-12">
-                        {milestonesData.map((m, idx) => (
-                            <motion.div 
-                                key={idx}
-                                initial={{ opacity: 0, x: -30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                                className="relative pl-8 md:pl-12 group"
-                            >
-                                <div className="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-white border-4 border-[var(--color-brand-pink)] group-hover:scale-125 transition-transform duration-300 shadow-[0_0_8px_rgba(228,64,95,0.4)]" />
-                                <div className="flex flex-col md:flex-row md:items-center gap-4">
-                                    <span className="text-2xl font-black text-[var(--color-brand-pink)] leading-none shrink-0 tracking-tight">{m.year}</span>
-                                    <div className="glass-panel-elite rounded-[24px] p-6 bg-white border border-slate-100 shadow-sm flex-1">
-                                        <h4 className="text-lg font-black text-slate-900 tracking-tight mb-2">{m.title}</h4>
-                                        <p className="text-sm text-slate-500 font-bold leading-relaxed">{m.desc}</p>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Management Section */}
-                <div id="management" className="space-y-12 scroll-mt-28">
-                    <div className="text-center space-y-4">
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--color-brand-pink)] block">Leadership</span>
-                        <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter">Management Team</h2>
-                        <div className="w-12 h-1 bg-[var(--color-brand-pink)] mx-auto rounded-full" />
-                    </div>
-
-                    <div className="grid gap-8 md:grid-cols-2">
-                        {managementData.map((m, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                                className="glass-panel-elite rounded-[40px] p-8 md:p-10 bg-white shadow-lg border border-slate-100 flex flex-col justify-between"
-                            >
-                                <div className="space-y-6">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-2xl bg-[#986699]/10 text-[#986699] flex items-center justify-center font-black">
-                                            <Building2 size={24} />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-xl font-black text-slate-900 leading-tight">{m.name}</h3>
-                                            <span className="text-[10px] font-black uppercase text-[var(--color-brand-pink)] tracking-wider">{m.degree}</span>
-                                        </div>
-                                    </div>
-                                    <p className="text-[11px] font-black uppercase tracking-widest text-slate-400 leading-none">{m.role}</p>
-                                    <p className="text-sm text-slate-500 font-bold leading-relaxed">{m.bio}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Team of Empanelled Doctors */}
-                <div id="doctors" className="space-y-12 scroll-mt-28">
-                    <div className="text-center space-y-4">
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--color-brand-pink)] block">Board of Experts</span>
-                        <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter">Empanelled Doctors</h2>
-                        <div className="w-12 h-1 bg-[var(--color-brand-pink)] mx-auto rounded-full" />
-                    </div>
-
-                    <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                        {doctorsData.map((doc, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, y: 35 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: (idx % 3) * 0.1 }}
-                                className="glass-panel-elite rounded-[32px] p-6 bg-white/70 border border-slate-100 flex flex-col justify-between shadow-md"
-                            >
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
-                                        <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-black shrink-0 text-sm">
-                                            DR
-                                        </div>
-                                        <div>
-                                            <h4 className="text-md font-black text-slate-900 tracking-tight">{doc.name}</h4>
-                                            <p className="text-[9px] font-bold text-slate-400 leading-none uppercase mt-1">{doc.degree}</p>
-                                        </div>
-                                    </div>
-                                    <p className="text-[10px] font-black uppercase tracking-wider text-[#986699]">{doc.role}</p>
-                                    <p className="text-xs text-slate-500 font-bold leading-relaxed">{doc.bio}</p>
-                                </div>
-                                <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-slate-50">
-                                    {doc.specialties.map((spec) => (
-                                        <span key={spec} className="text-[8px] font-black uppercase tracking-wider bg-slate-50 text-slate-500 px-2.5 py-1 rounded-full">
-                                            {spec}
-                                        </span>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Directors Message */}
-                <div id="director-message" className="scroll-mt-28">
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="glass-panel-elite rounded-[48px] p-8 md:p-16 bg-white border border-slate-100 shadow-2xl relative overflow-hidden"
-                    >
-                        <div className="absolute right-0 top-0 text-[18rem] font-serif text-slate-50 -z-10 leading-none select-none select-none select-none translate-x-20 -translate-y-20">
-                            ”
+                <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+                    <div className="rounded-[34px] border border-slate-200/70 bg-white/80 shadow-xl overflow-hidden">
+                        <div className="px-6 py-5 border-b border-slate-200 bg-[#986699]">
+                            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-white">About Us</p>
                         </div>
-                        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] items-start relative z-10">
-                            <div className="space-y-6">
-                                <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-brand-pink)]/10 text-[var(--color-brand-pink)]">
-                                    <Quote size={32} />
+                        <div>
+                            {aboutDetailSections.map((section) => (
+                                <Link
+                                    key={section.path}
+                                    to={section.path}
+                                    className="block px-6 py-5 text-sm font-bold text-slate-900 border-b border-slate-200 hover:bg-slate-50 transition-colors"
+                                >
+                                    {section.title}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="space-y-4">
+                        {aboutDetailSections.map((section) => (
+                            <article key={`${section.path}-summary`} className="rounded-[28px] border border-slate-200/70 bg-white/80 p-6 shadow-sm">
+                                <div className="flex items-center justify-between gap-4">
+                                    <h3 className="text-xl font-black tracking-tight text-[var(--color-brand-black)]">{section.title}</h3>
+                                    <Link to={section.path} className="text-[10px] font-black uppercase tracking-[0.2em] text-[#986699]">
+                                        Open
+                                    </Link>
                                 </div>
-                                <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter leading-tight">
-                                    Director's <span className="text-slate-400">Message</span>
-                                </h2>
-                                <div className="space-y-2 pt-4">
-                                    <p className="text-lg font-black text-slate-950">Dr. Chetan S Durgi</p>
-                                    <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-brand-pink)]">Director & Consultant Radiologist</p>
-                                    <p className="text-xs text-slate-400 font-semibold uppercase">Mediscan Labs Diagnostic Center</p>
-                                </div>
+                                {section.excerpt && (
+                                    <p className="mt-3 text-sm leading-relaxed text-slate-600 font-medium">{section.excerpt}</p>
+                                )}
+                            </article>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Technology Section */}
+                <div className="grid gap-8 md:grid-cols-3">
+                    {[
+                        {
+                            title: 'MRI & CT Scan',
+                            desc: 'High-field 1.5T MRI and 128-slice CT technology for exceptional clarity.',
+                            img: MEDICAL_IMAGES.MRI_SCAN,
+                        },
+                        {
+                            title: 'Clinical Pathology',
+                            desc: 'Fully automated hematology, biochemistry and immunology analyzers.',
+                            img: MEDICAL_IMAGES.PATHOLOGY,
+                        },
+                        {
+                            title: 'Digital X-Ray & Echo',
+                            desc: 'Instant digital X-Ray with 2D Echo cardiology for heart diagnostics.',
+                            img: MEDICAL_IMAGES.XRAY,
+                        },
+                    ].map((item, i) => (
+                        <motion.article
+                            key={item.title}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1, duration: 0.5 }}
+                            className="group relative h-[400px] overflow-hidden rounded-[40px] shadow-xl"
+                        >
+                            <SmartImage
+                                src={item.img}
+                                alt={item.title}
+                                className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                            <div className="absolute inset-0 bg-black/20" /> {/* Extra protection */}
+                            <div className="absolute inset-0 flex flex-col justify-end p-10">
+                                <h3 className="text-2xl font-black text-white tracking-tighter leading-none">{item.title}</h3>
+                                <p className="mt-4 text-sm text-white/80 font-medium leading-relaxed">{item.desc}</p>
                             </div>
                             <div className="space-y-6 text-slate-600 font-medium text-sm leading-relaxed text-left border-l border-slate-100 pl-0 lg:pl-10">
                                 <p>
