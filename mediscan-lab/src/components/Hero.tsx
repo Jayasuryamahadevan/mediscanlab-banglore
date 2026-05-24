@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FlaskConical, Package, Search, Phone, ArrowRight, Activity } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { siteData, handleExternalRedirect } from '../lib/siteData';
+import { siteData } from '../lib/siteData';
 import { MEDICAL_IMAGES } from '../lib/medical_images';
 import SmartImage from './SmartImage';
 

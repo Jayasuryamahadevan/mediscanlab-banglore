@@ -234,7 +234,6 @@ const Navbar = () => {
                                         href={item.path}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        onClick={(e) => handleExternalRedirect(e, item.path)}
                                         className={navbarLinkClass({ isActive: false }) + ' flex items-center gap-1'}
                                     >
                                         {item.label}
