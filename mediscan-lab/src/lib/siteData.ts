@@ -26,7 +26,8 @@ export const siteData = {
             "+91 90355 34722"
         ],
         emails: [
-            "info@mediscandiagnostic.com"
+            "info@mediscandiagnostic.com",
+            "info@mediscanlab.com"
         ],
         location: "Behind G K Complex, Opp: Mohan Lodge, MSK Mill Road, Gulbarga - 585 102 (Karnataka - India)",
         branch: "1/15B/1, 2nd Cross, MB Nagar, Basaveshwar Colony Road, Kalaburagi - 585 105",
