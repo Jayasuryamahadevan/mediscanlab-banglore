@@ -15,6 +15,7 @@ const primaryNav = [
     { label: 'Health Packages', path: '/packages' },
     { label: 'Download Report', path: siteData.reportsUrl, external: true },
     { label: 'Blog', path: '/blog' },
+    { label: 'Privacy Policy', path: '/privacy-policy' },
     { label: 'Contact', path: '/contact' }
 ];
 
