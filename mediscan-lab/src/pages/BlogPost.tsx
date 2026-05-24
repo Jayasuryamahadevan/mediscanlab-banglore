@@ -2,7 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Calendar, User, Clock, Share2, ShieldCheck } from 'lucide-react';
 import { getPostBySlug, toParagraphs, handleExternalRedirect } from '../lib/siteData';
 import { motion } from 'framer-motion';
-import { MEDICAL_IMAGES } from '../lib/medical_images';
+import { MEDICAL_IMAGES, BLOG_IMAGES } from '../lib/medical_images';
 import SmartImage from '../components/SmartImage';
 
 const formatDate = (value: string) => {
@@ -32,7 +32,7 @@ const BlogPost = () => {
             {/* Hero Header */}
             <header className="relative h-[450px] md:h-[600px] overflow-hidden">
                 <SmartImage
-                    src={MEDICAL_IMAGES.BLOG_HEADER}
+                    src={BLOG_IMAGES[post.title] || MEDICAL_IMAGES.BLOG_HEADER}
                     alt={post.title}
                     className="absolute inset-0 w-full h-full object-cover"
                 />

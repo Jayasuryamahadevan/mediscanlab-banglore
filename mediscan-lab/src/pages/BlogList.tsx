@@ -2,7 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, BookOpen } from 'lucide-react';
 import { sortedPosts } from '../lib/siteData';
-import { MEDICAL_IMAGES, BLOG_IMAGE_SET } from '../lib/medical_images';
+import { MEDICAL_IMAGES, BLOG_IMAGES, BLOG_IMAGE_SET } from '../lib/medical_images';
 import SmartImage from '../components/SmartImage';
 
 const blogImages = BLOG_IMAGE_SET;
@@ -66,7 +66,7 @@ const BlogList = () => {
                         className="group relative overflow-hidden rounded-[56px] border border-white/80 shadow-[0_50px_100px_-20px_rgba(2,6,23,0.3)] h-[500px] md:h-[600px] bg-slate-900"
                     >
                         <SmartImage
-                            src={blogImages[0]}
+                            src={BLOG_IMAGES[featured.title] || blogImages[0]}
                             alt={featured.title}
                             className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
                             loading="lazy"
@@ -105,7 +105,7 @@ const BlogList = () => {
                             {/* Thumbnail */}
                             <div className="relative h-[240px] overflow-hidden bg-slate-100">
                                 <SmartImage
-                                    src={blogImages[(i + 1) % blogImages.length]}
+                                    src={BLOG_IMAGES[post.title] || blogImages[(i + 1) % blogImages.length]}
                                     alt={post.title}
                                     className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                     loading="lazy"

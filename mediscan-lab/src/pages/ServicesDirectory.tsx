@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Microscope, Scan, Stethoscope, Activity, Heart, Shield } from 'lucide-react';
 import { serviceHighlights } from '../lib/siteData';
 
-import { MEDICAL_IMAGES, SERVICE_IMAGE_SET } from '../lib/medical_images';
+import { MEDICAL_IMAGES, SERVICE_IMAGES, SERVICE_IMAGE_SET } from '../lib/medical_images';
 import SmartImage from '../components/SmartImage';
 
 const serviceIcons = [
@@ -94,7 +94,7 @@ const ServicesDirectory = () => {
 
                             <div className="relative h-[280px] overflow-hidden bg-slate-100">
                                 <SmartImage
-                                    src={SERVICE_IMAGE_SET[i % SERVICE_IMAGE_SET.length]}
+                                    src={SERVICE_IMAGES[service.title] || SERVICE_IMAGE_SET[i % SERVICE_IMAGE_SET.length]}
                                     alt={service.title}
                                     className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                     loading="lazy"

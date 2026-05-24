@@ -4,7 +4,7 @@ import { FlaskConical, Search, Activity, Microscope, HeartPulse } from 'lucide-r
 import { motion } from 'framer-motion';
 import { labTests } from '../lib/siteData';
 
-import { MEDICAL_IMAGES } from '../lib/medical_images';
+import { MEDICAL_IMAGES, LAB_TEST_IMAGES } from '../lib/medical_images';
 
 const categoryImages: Record<string, string> = {
     default: MEDICAL_IMAGES.LAB_TEAM,
@@ -15,6 +15,7 @@ const categoryImages: Record<string, string> = {
 };
 
 const getCardImage = (title: string) => {
+    if (LAB_TEST_IMAGES[title]) return LAB_TEST_IMAGES[title];
     const t = title.toLowerCase();
     if (t.includes('mri') || t.includes('ct') || t.includes('scan')) return categoryImages.mri;
     if (t.includes('x-ray') || t.includes('xray') || t.includes('x ray')) return categoryImages.xray;

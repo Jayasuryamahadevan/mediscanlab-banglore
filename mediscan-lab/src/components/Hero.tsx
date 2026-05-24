@@ -131,7 +131,7 @@ const Hero = () => {
                         {/* Device Bezel - Clean Silver/White Apple Aesthetic */}
                         <div className="relative z-10 rounded-[48px] md:rounded-[64px] p-2 md:p-3 bg-white border border-slate-200 shadow-[0_40px_80px_-20px_rgba(15,23,42,0.15)] ring-1 ring-slate-900/5">
                             {/* Screen Area */}
-                            <div className="relative overflow-hidden rounded-[40px] md:rounded-[52px] bg-slate-50">
+                            <div className="relative overflow-hidden rounded-[40px] md:rounded-[52px] bg-slate-50 aspect-[9/19.5]">
                                 <SmartImage
                                     src={MEDICAL_IMAGES.HERO_MAIN}
                                     alt="Advanced Medical Diagnostics"

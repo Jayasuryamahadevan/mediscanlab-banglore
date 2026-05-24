@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FlaskConical, ArrowRight, Package, Star, ShieldCheck, Heart } from 'lucide-react';
 import { siteData, checkupPackages, sortedProducts, handleExternalRedirect } from '../lib/siteData';
-import { MEDICAL_IMAGES, SERVICE_IMAGE_SET } from '../lib/medical_images';
+import { MEDICAL_IMAGES, PACKAGE_IMAGES, SERVICE_IMAGE_SET } from '../lib/medical_images';
 
 const Packages = () => {
     return (
@@ -55,7 +55,7 @@ const Packages = () => {
                         >
                             <div className="relative h-[280px] overflow-hidden rounded-[36px] m-2 bg-slate-100">
                                 <img
-                                    src={SERVICE_IMAGE_SET[i % SERVICE_IMAGE_SET.length]}
+                                    src={PACKAGE_IMAGES[item.title] || SERVICE_IMAGE_SET[i % SERVICE_IMAGE_SET.length]}
                                     alt={item.title}
                                     className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                     loading="lazy"

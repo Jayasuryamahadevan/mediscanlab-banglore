@@ -23,8 +23,11 @@ export const siteData = {
             "info@mediscandiagnostic.com"
         ],
         location: "Behind G K Complex, Opp: Mohan Lodge, MSK Mill Road, Gulbarga - 585 102 (Karnataka - India)",
+        branch: "1/15B/1, 2nd Cross, MB Nagar, Basaveshwar Colony Road, Kalaburagi - 585 105",
+        branchPhone: "+91 90355 34726"
     },
-    bookingUrl: BOOKING_URL
+    bookingUrl: BOOKING_URL,
+    reportsUrl: REPORTS_URL
 };
 
 export const handleExternalRedirect = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, url: string) => {

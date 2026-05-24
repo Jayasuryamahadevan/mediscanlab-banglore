@@ -1,80 +1,9 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { siteData, toParagraphs, getAnyContentByPath, getPageByPath } from '../lib/siteData';
-import { MapPin, Users, Award, CheckCircle2 } from 'lucide-react';
+import { MapPin, Users, Award, CheckCircle2, Quote, Briefcase } from 'lucide-react';
 import { MEDICAL_IMAGES } from '../lib/medical_images';
 import SmartImage from '../components/SmartImage';
-
-const milestonesData = [
-    { year: '1995', title: 'Radiology Department', desc: 'Inaugurated our dedicated Radiology Department offering initial scanning procedures.' },
-    { year: '1997', title: 'Diagnostic Services', desc: 'Formally launched full clinical diagnostics and advanced reporting.' },
-    { year: '2001', title: 'Expansion & Relocation', desc: 'Relocated to a significantly larger, state-of-the-art diagnostic facility based on high patient trust and growth.' },
-    { year: '2005', title: 'Home Sample Collection', desc: 'Pioneered professional, sterile home sample collection services in the region.' },
-    { year: '2013', title: 'NABL Accreditation & standalone center', desc: 'Received premium National Accreditation Board for Testing and Calibration Laboratories (NABL) gold standard accreditation, and established a specialized standalone diagnostic center.' },
-    { year: '2016', title: 'City Labs launch', desc: 'Inaugurated our advanced standalone pathology laboratory facility in the heart of Gulbarga city.' },
-];
-
-const managementData = [
-    {
-        name: 'Dr. Chetan Durgi',
-        degree: 'MBBS, DMRD, MD',
-        role: 'Chairman, Managing Director & Consultant Radiologist',
-        bio: 'Dr. Chetan Durgi did his MD in Radiology in 1980 and MBBS in 1977 from M.R. Medical College, Gulbarga. Under his visionary guidance and active leadership over the past several decades, Mediscan Labs transitioned into a high-precision, state-of-the-art diagnostic facility accredited with NABL, making it a medical beacon of hope and quality in North Karnataka.'
-    },
-    {
-        name: 'Dr. Suchitra C Durgi',
-        degree: 'MBBS, DMRD',
-        role: 'Director & Consultant Radiologist',
-        bio: 'Dr. Suchitra C Durgi did her DMRD in Radiology in 1980 and MBBS in 1977 from M.R. Medical College, Gulbarga. She has been central to the expansion of radiological and ultrasonography services at Mediscan Labs, ensuring absolute accuracy and clinical support for hundreds of thousands of patients.'
-    }
-];
-
-const doctorsData = [
-    {
-        name: 'Dr. Vijaykumar Pattankar',
-        degree: 'MBBS, MD, FICP, PGIMER',
-        role: 'Senior Consultant Pathologist & Founder Fellow',
-        specialties: ['Cardiac Pathology', 'Immunopathology', 'Oncopathology'],
-        bio: 'University topper throughout academics and Silver Medal Award Winner during MD. A highly renowned Pathologist serving the industry for over 40+ years. Formerly Professor & HOD of Pathology at MR Medical College. Presented 155 research papers and 66 guest lectures globally. Served as External Expert in selection committee at PGIMER Chandigarh, and External Reviewer for Philip Morris research program USA.'
-    },
-    {
-        name: 'Dr. Sunil Kumar Biradar',
-        degree: 'MBBS, MD',
-        role: 'Consultant Microbiologist & Associate Professor',
-        specialties: ['Medical Microbiology', 'Molecular Techniques', 'Internal Auditor'],
-        bio: 'Trained in Advanced Microbiological Techniques at JIAMER Pondicherry & MAHE Manipal, and Molecular Techniques at MAMB Pune. Currently Associate Professor in the Department of Microbiology at MR Medical College. Serves as a certified Internal Auditor for NABL and resource person for NACO.'
-    },
-    {
-        name: 'Dr. S M Awanti',
-        degree: 'MBBS, MD',
-        role: 'Consultant Biochemist',
-        specialties: ['Clinical Biochemistry', 'Metabolic Markers'],
-        bio: 'Expert consultant spearheading the Department of Biochemistry. Highly experienced in handling advanced fully automated immunoassay systems and analyzing micro-markers.'
-    },
-    {
-        name: 'Dr. Veeramma N',
-        degree: 'MBBS, MD',
-        role: 'Consultant Pathologist',
-        specialties: ['Histopathology', 'Hematology'],
-        bio: 'Lead pathologist driving the clinical reporting of our pathology center. Specializes in advanced cytological evaluations and sterile diagnostic analysis.'
-    },
-    {
-        name: 'Dr. Anand Kanaki',
-        degree: 'MBBS, MD',
-        role: 'Consultant Clinician',
-        specialties: ['Clinical Diagnostics', 'General Pathology'],
-        bio: 'Dedicated senior consultant supporting routine diagnostics and report validation across various clinical pathology divisions.'
-    },
-    {
-        name: 'Dr. P. V. Suresh',
-        degree: 'MBBS, MD, DM',
-        role: 'Visiting Consultant Cardiologist',
-        specialties: ['Non-Invasive Cardiology', 'Echocardiography'],
-        bio: 'Super-specialist Visiting Cardiologist supervising complex echocardiography, stress tests, and cardiac diagnostic reporting.'
-    }
-];
 
 const clientsData = [
     'Canara Bank',
@@ -297,8 +226,8 @@ const AboutUs = () => {
                     ))}
                 </div>
 
-                {/* Managing Director Message */}
-                <div id="md-message" className="scroll-mt-28">
+                {/* Directors Message */}
+                <div id="directors-message" className="scroll-mt-28">
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -315,8 +244,13 @@ const AboutUs = () => {
                                     <Quote size={32} />
                                 </div>
                                 <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter leading-tight">
-                                    MD's <span className="text-slate-400">Message</span>
+                                    Director's <span className="text-slate-400">Message</span>
                                 </h2>
+                                <div className="space-y-2 pt-4">
+                                    <p className="text-lg font-black text-slate-950">Dr. Chetan S Durgi</p>
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-[#986699]">Chairman & Managing Director</p>
+                                    <p className="text-xs text-slate-400 font-semibold uppercase">Mediscan Labs Diagnostic Center</p>
+                                </div>
                             </div>
                             <div className="space-y-6 text-slate-600 font-medium text-sm leading-relaxed text-left border-l border-slate-100 pl-0 lg:pl-10">
                                 <p>

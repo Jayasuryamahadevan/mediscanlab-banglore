@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, FlaskConical, Layers3, MessageCircle, ChevronRight } from 'lucide-react';
 import { siteData, checkupPackages, sortedPosts, handleExternalRedirect } from '../lib/siteData';
-import { MEDICAL_IMAGES, SERVICE_IMAGE_SET, BLOG_IMAGE_SET } from '../lib/medical_images';
+import { MEDICAL_IMAGES, SERVICE_IMAGE_SET, BLOG_IMAGE_SET, PACKAGE_IMAGES, BLOG_IMAGES } from '../lib/medical_images';
 import SmartImage from './SmartImage';
 
 const formatDate = (value: string) => {
@@ -54,7 +54,7 @@ const Services = () => {
                             <article key={`${card.title}-${card.price}`} className="group glass-panel-soft overflow-hidden rounded-[32px] flex flex-col h-full hover:shadow-2xl transition-all duration-500 border border-slate-200/50 bg-slate-50">
                                 <div className="relative h-44 overflow-hidden bg-slate-200">
                                     <SmartImage
-                                        src={SERVICE_IMAGE_SET[i % SERVICE_IMAGE_SET.length]}
+                                        src={PACKAGE_IMAGES[card.title] || SERVICE_IMAGE_SET[i % SERVICE_IMAGE_SET.length]}
                                         alt={card.title}
                                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                         loading="lazy"
@@ -165,7 +165,7 @@ const Services = () => {
                             <article key={post.path} className="group flex flex-col sm:flex-row gap-6 p-4 rounded-[32px] hover:bg-white transition-all duration-500 border border-transparent hover:border-slate-100 hover:shadow-2xl">
                                 <div className="relative h-48 sm:h-44 sm:w-44 shrink-0 overflow-hidden rounded-[24px]">
                                     <SmartImage
-                                        src={BLOG_IMAGE_SET[i % BLOG_IMAGE_SET.length]}
+                                        src={BLOG_IMAGES[post.title] || BLOG_IMAGE_SET[i % BLOG_IMAGE_SET.length]}
                                         alt={post.title}
                                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />

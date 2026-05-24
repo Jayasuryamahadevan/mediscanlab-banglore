@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone, Facebook, Instagram, Linkedin } from 'lucide-react';
-import { siteData } from '../lib/siteData';
+import { siteData, handleExternalRedirect } from '../lib/siteData';
+
+const base = (import.meta as any).env.BASE_URL || '/';
 
 const Footer = () => {
     const primaryEmail = siteData.contact.emails[0] ?? 'info@mediscandiagnostic.com';

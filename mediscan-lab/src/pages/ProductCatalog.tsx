@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { sortedProducts } from '../lib/siteData';
 import { motion } from 'framer-motion';
 import { Package, ArrowRight, ShoppingCart } from 'lucide-react';
-import { MEDICAL_IMAGES } from '../lib/medical_images';
+import { PRODUCT_IMAGES, PRODUCT_IMAGE_SET } from '../lib/medical_images';
 import SmartImage from '../components/SmartImage';
 
 const ProductCatalog = () => {
@@ -48,7 +48,7 @@ const ProductCatalog = () => {
                         >
                             <div className="relative h-[260px] overflow-hidden">
                                 <SmartImage
-                                    src={MEDICAL_IMAGES.MEDICAL_EQUIPMENT}
+                                    src={PRODUCT_IMAGES[item.title] || PRODUCT_IMAGE_SET[i % PRODUCT_IMAGE_SET.length]}
                                     alt={item.title}
                                     className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                 />
